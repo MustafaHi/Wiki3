@@ -156,7 +156,7 @@ function loadDocument(url) {
 	// router.updatePageLinks();
 	document.querySelector("li.active")?.classList.toggle("active", false);
 	t.classList.toggle("active", true);
-	if (!FL || !hashID) window.history.replaceState(historyUrl, "loadDoc", historyUrl);
+	if (!FL || !hashID) window.history.replaceState(null, "", historyUrl);
 	document.title = Setup.title + t.innerText;
 	return true;
 }
