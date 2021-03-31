@@ -98,10 +98,10 @@ function setup() {
 	}
 
 	document.getElementById("toggleNav").addEventListener("click",   () => {
-		document.body.classList.toggle("dark");
+		Navigation.classList.toggle("show");
 	});
 	document.getElementById("toggleTheme").addEventListener("click", () => {
-		Navigation.classList.toggle("show");
+		document.body.classList.toggle("dark");
 	});
 }
 
@@ -131,7 +131,8 @@ function loadDocument(url) {
 	var t = event.target;
 	if (t.classList.contains("active")) return false;
 	
-	var historyUrl = "./" + Setup.path + "/" + Page[0] + "/" + t.innerText;
+	// var historyUrl = "./" + Setup.path + "/" + Page[0] + "/" + t.innerText;
+	var historyUrl = Setup.path + "/" + Page[0] + "/" + t.innerText;
 	url = "./docs" + Page[1] + "/" + url;
 	console.log(historyUrl);
 	fetch(url)
