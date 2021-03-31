@@ -1,3 +1,6 @@
+//| Wiki3 v1.0
+//| https://github.com/MustafaHi/Wiki3
+
 var root = Setup.path;
 var useHash = false; // Defaults to: false
 var hash = '#!'; // Defaults to: '#'
@@ -24,7 +27,7 @@ var Page = [];
 
 router.on({
     ':url': function (params) {
-		console.log(params);
+		console.log("Params" + params);
 		params.url = params.url.toLowerCase();
 		hashID = params.url.indexOf("#") > 0 ? params.url.slice(params.url.indexOf('#')) : "";
 		var url = params.url.indexOf("#") > 0 ? params.url.slice(0, params.url.indexOf('#')) : params.url;
@@ -38,6 +41,7 @@ router.on({
 		FL = false;
 	},
 	':page/:doc': function (params) {
+		console.log("params" + params);
 		// console.log(params);
 		params.page = params.page.toLowerCase();
 		params.doc = params.doc.toLowerCase();
@@ -84,7 +88,6 @@ function poke(str, ...args) {
 
 function setup() {
 	setupNav(Page[2]);
-	document.getElementById("Title").innerHTML = Setup.title;
 	var HTML = "";
 	Setup.pages.forEach((p) => {HTML += '<a href="'+p[0]+'">'+p[0]+'</a>';});
 	document.getElementById("Pages").innerHTML = HTML;
@@ -128,9 +131,9 @@ function loadDocument(url) {
 	var t = event.target;
 	if (t.classList.contains("active")) return false;
 	
-	// url = "/"+ Page[0] + "/" + url;
-	url = "docs" + Page[1] + "/" + url;
-	console.log(url);
+	var historyUrl = Page[0] + "/" + t.innerText;
+	url = "./docs" + Page[1] + "/" + url;
+	console.log(historyUrl);
 	fetch(url)
 	.then(response => response.text())
 	.then((data) => {
@@ -153,7 +156,7 @@ function loadDocument(url) {
 	// router.updatePageLinks();
 	document.querySelector("li.active")?.classList.toggle("active", false);
 	t.classList.toggle("active", true);
-	// if (!FL || !hashID) window.history.replaceState(url, "loadDoc", "/" + Page[0] + "/" + t.innerText);
+	if (!FL || !hashID) window.history.replaceState(historyUrl, "loadDoc", historyUrl);
 	document.title = Setup.title + t.innerText;
 	return true;
 }
@@ -238,6 +241,7 @@ function Tracking() {
 				} else {
 					// Tack(ToC.querySelector('a[href="#' + id + '"]'), false);
 					// ToC.querySelectorAll(".active").forEach((i) => {i.classList.remove("active")});
+					console.log(id);
 					ToC.querySelector('a[href="#' + id + '"]').parentElement.classList.toggle('active', false);
 					// ToC.querySelector('a[href="#' + id + '"]').parentElement.parentElement.parentElement.classList.toggle('active', false);
 					// ToC.querySelector(".active")?.classList.remove('active');

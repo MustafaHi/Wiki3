@@ -3,7 +3,7 @@ const setupList = [{
 	c: [
 		{
 			t: "Installation",
-			l: "demo3.md"
+			l: "demo1.md"
 		},
 		{
 			t: "Upcoming Changes",
@@ -46,8 +46,8 @@ const guideList = [{
 
 
 const Setup = {
-	title: "Doc3 ",
-	path: "Doc3",
+	title: "Wiki3 ",
+	path: "Source",
 	header: true,
 	search: true,
 	theme : true,
