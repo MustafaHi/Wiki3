@@ -27,7 +27,7 @@ var Page = [];
 
 router.on({
     ':url': function (params) {
-		console.log("Params" + params);
+		console.log(params);
 		params.url = params.url.toLowerCase();
 		hashID = params.url.indexOf("#") > 0 ? params.url.slice(params.url.indexOf('#')) : "";
 		var url = params.url.indexOf("#") > 0 ? params.url.slice(0, params.url.indexOf('#')) : params.url;
@@ -41,11 +41,11 @@ router.on({
 		FL = false;
 	},
 	':page/:doc': function (params) {
-		console.log("params" + params);
+		console.log(params);
 		// console.log(params);
 		params.page = params.page.toLowerCase();
 		params.doc = params.doc.toLowerCase();
-		hashID = params.doc.indexOf("#") > 0 ? params.doc.slice(params.doc.indexOf('#')) : "";
+		hashID = params.doc.indexOf("#")  > 0 ? params.doc.slice(params.doc.indexOf('#')) : "";
 		var url = params.doc.indexOf("#") > 0 ? params.doc.slice(0, params.doc.indexOf('#')) : params.doc;
 
 		Page = Setup.pages.find(p=> p[0].toLowerCase() === params.page) ?? Setup.pages[0];
@@ -72,7 +72,7 @@ router.notFound(function () {
 var renderer = (function () {
 	var r = new marked.Renderer();
 	r.heading = function (t, l, r) {
-		var id = this.options.headerPrefix + r.toLowerCase().replace(/[^\w]+/g, '-');
+		var id = this.options.headerPrefix + r.trim().toLowerCase().replace(/[^\w]+/g, '-');
 		toc.push({ level: l, id: id, text: t });
 		return poke("<h{0} id={1}>{2}</h{0}>", l, id, t);
 	}
@@ -96,13 +96,13 @@ function setup() {
 		Setup.social.forEach((p) => {HTML += p;});
 		document.getElementById("Social").innerHTML = HTML;
 	}
-}
 
-function toggleTheme() {
-	document.body.classList.toggle("dark");
-}
-function toggleNav() {
-	Navigation.classList.toggle("show");
+	document.getElementById("toggleNav").addEventListener("click",   () => {
+		document.body.classList.toggle("dark");
+	});
+	document.getElementById("toggleTheme").addEventListener("click", () => {
+		Navigation.classList.toggle("show");
+	});
 }
 
 
@@ -131,7 +131,7 @@ function loadDocument(url) {
 	var t = event.target;
 	if (t.classList.contains("active")) return false;
 	
-	var historyUrl = "./" + Page[0] + "/" + t.innerText;
+	var historyUrl = Setup.path + "/" + Page[0] + "/" + t.innerText;
 	url = "./docs" + Page[1] + "/" + url;
 	console.log(historyUrl);
 	fetch(url)
@@ -185,7 +185,7 @@ function Table() {
 	build(toc, 0, 0, html);
 	html.push("</ul>");
 	ToC.innerHTML = html.join("");
-	ToC.innerHTML += '<svg class="toc-marker" width="200" height="200" xmlns="http://www.w3.org/2000/svg"><path stroke="#444" stroke-width="3" fill="transparent" stroke-dasharray="0, 0, 0, 1000" stroke-linecap="round" stroke-linejoin="round" transform="translate(-0.5, -0.5)" /></svg>';
+	// ToC.innerHTML += '<svg class="toc-marker" width="200" height="200" xmlns="http://www.w3.org/2000/svg"><path stroke="#444" stroke-width="3" fill="transparent" stroke-dasharray="0, 0, 0, 1000" stroke-linecap="round" stroke-linejoin="round" transform="translate(-0.5, -0.5)" /></svg>';
 	// var html = '<p>CONTENT</p>';
 	// for (var i = 0; i<toc.length; i++) {
 	// 	if (toc[i+1] && toc[i+1].level < toc[i].level)
@@ -241,7 +241,7 @@ function Tracking() {
 				} else {
 					// Tack(ToC.querySelector('a[href="#' + id + '"]'), false);
 					// ToC.querySelectorAll(".active").forEach((i) => {i.classList.remove("active")});
-					console.log(id);
+					// console.log(id);
 					ToC.querySelector('a[href="#' + id + '"]').parentElement.classList.toggle('active', false);
 					// ToC.querySelector('a[href="#' + id + '"]').parentElement.parentElement.parentElement.classList.toggle('active', false);
 					// ToC.querySelector(".active")?.classList.remove('active');
