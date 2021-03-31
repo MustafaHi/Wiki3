@@ -131,7 +131,7 @@ function loadDocument(url) {
 	var t = event.target;
 	if (t.classList.contains("active")) return false;
 	
-	var historyUrl = Setup.path + "/" + Page[0] + "/" + t.innerText;
+	var historyUrl = "./" + Setup.path + "/" + Page[0] + "/" + t.innerText;
 	url = "./docs" + Page[1] + "/" + url;
 	console.log(historyUrl);
 	fetch(url)
