@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css">
-    <link type="text/css" rel="stylesheet" href="doc3.css">
-    <title>Doc3 | Home</title>
+    <link type="text/css" rel="stylesheet" href="wiki.css">
+    <title>Wiki3 | Home</title>
 </head>
 <body>
     <header>
         <div class="wrapper flow-horizontal">
             <div class="left">
-                <div class="btn" onclick="toggleNav()"><svg viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"></path></svg></div>
-                <a id="Title" href="/">Doc3</a>
+                <div class="btn" id="toggleNav"><svg viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"></path></svg></div>
+                <a href="">Wiki3</a>
                 <div id="Pages"></div>
             </div>
             <div class="right">
@@ -24,11 +24,11 @@
                     </div>
                 </div>
 
-                <div class="btn" onclick="toggleTheme()"><div class="themeSwitch"></div></div>
+                <div class="btn" id="toggleTheme"><div class="themeSwitch"></div></div>
             </div>
         </div>
     </header>
-	<div class="content wrapper flow-horizontal">
+	<div class="content wrapper flow-horizontal" id="wiki">
 		<nav id="Navigation"></nav>
 		
 		<div id="Doc" class="markdown-body line-numbers">
@@ -43,7 +43,7 @@
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://unpkg.com/navigo@7.1.2/lib/navigo.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js"></script>
-<script type="text/javascript" src="doc3-setup.js"></script>
-<script type="text/javascript" src="doc3.js"></script>
+<script type="text/javascript" src="wiki-setup.js"></script>
+<script type="text/javascript" src="wiki.js"></script>
 
 </html>
