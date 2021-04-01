@@ -47,7 +47,8 @@ const guideList = [{
 
 const Setup = {
 	title: "Wiki3 ",
-	path: "Wiki3/Source",
+	path: "/Source/",
+	// path: "Wiki3/Source",
 	header: true,
 	search: true,
 	theme : true,
