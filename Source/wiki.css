@@ -716,7 +716,7 @@ nav li {
 	list-style: none;
 	color: var(--navK);
 	font-weight: 500;
-	padding: 6px;
+	/* padding: 6px; */
 	cursor: pointer;
 }
 nav li:hover {
@@ -726,7 +726,7 @@ nav li:hover {
 	border-right: 1px solid transparent;
 	padding: 0 6px 0 0;
 }
-#TableOfContent a {
+Nav a {
 	padding: 6px;
 }
 #TableOfContent li:hover, #TableOfContent li.active {

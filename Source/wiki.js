@@ -27,33 +27,39 @@ var Page = [];
 // }
 
 router.on({
-    ':url': function (params) {
+    ':page': function (params) {
+		console.log("url");
 		params.url = params.url.toLowerCase();
 		// hashID  = params.url.indexOf("#") > 0 ? params.url.slice(params.url.indexOf('#')) : "";
 		// var url = params.url.indexOf("#") > 0 ? params.url.slice(0, params.url.indexOf('#')) : params.url;
 		
-		Page = Setup.pages.find(p=> p[0].toLowerCase() === params.url) ?? Setup.pages[0];
+		Page = Setup.pages.find(p=> p[0].toLowerCase() === params.data.page.toLowerCase()) ?? Setup.pages[0];
 		console.log(Page);
 		setup();
 		// if (cc(el, url)) { cc(el, url).dispatchEvent(new Event("click"));}
 		// else { el[0].dispatchEvent(new Event("click")); }
 		// Nav[0].dispatchEvent(new Event("click"));
 		console.log(params);
-		Nav[0].click();
+		// Nav[0].click();
 		FL = false;
 	},
 	':page/:doc': function (params) {
-		// console.log(params);
-		params.page = params.page?.toLowerCase();
-		params.doc  = params.doc?.toLowerCase();
+		console.log("page/doc");
+		// params.page = params.page?.toLowerCase();
+		// params.doc  = params.doc?.toLowerCase();
 		// hashID  = params.doc.indexOf("#") > 0 ? params.doc.slice(params.doc.indexOf('#')) : "";
 		// var url = params.doc.indexOf("#") > 0 ? params.doc.slice(0, params.doc.indexOf('#')) : params.doc;
 		
-		Page = Setup.pages.find(p=> p[0].toLowerCase() === params.page) ?? Setup.pages[0];
+		Page = Setup.pages.find(p=> p[0].toLowerCase() === params.data.page.toLowerCase()) ?? Setup.pages[0];
 		console.log(params);
 		// console.log(Page);
+		console.log(params.data.doc);
 		setup();
-		if (cc(Nav, params.doc)) { cc(Nav, params.doc).dispatchEvent(new Event("click"));}
+		// if (cc(Nav, params.doc)) { cc(Nav, params.doc).dispatchEvent(new Event("click"));}
+		// console.log(cc(Nav, params.data.doc.toLowerCase()));
+		// loadDocument(cc(Nav, params.data.doc.toLowerCase()));
+		var doc = params.data.doc.toLowerCase();
+		if (cc(Nav, doc)) { loadDocument(cc(Nav, doc));}
 		else { Nav[0].dispatchEvent(new Event("click")); }
 		FL = false;
 	},
@@ -61,8 +67,8 @@ router.on({
 		console.log("*all*");
 		Page = Setup.pages[0];
 		setup();
+		// Nav[0].click();
 		// Nav[0].dispatchEvent(new Event("click"));
-		Nav[0].click();
 		// Navigation.getElementsByTagName("li")[0].dispatchEvent(new Event("click"));
     }
 }).resolve();
@@ -117,7 +123,7 @@ function setupNav(list) {
 		for (var i of list) {
 			if (i.c) arr += '<li>' + i.t + ' ' + ar(i.c) + '</li>';
 			// else arr += '<li onclick="loadDocument(\'' +i.l+ '\')">' +i.t+ '</li>';
-			else arr += '<a href="' +Page[0] + "/" + i.t+ '" data-navigo>' +i.t+ '</a>';
+			else arr += '<li><a href="' +Page[0] + "/" + i.t+ '" path="' + i.l  + '" data-navigo>' +i.t+ '</a></li>';
 		}
 		arr += "</ul>";
 		return arr;
@@ -128,20 +134,21 @@ function setupNav(list) {
 		if (item.c) ht += ar(item.c);
 	}
 	Navigation.innerHTML = ht;
-	Nav = Navigation.getElementsByTagName("li");
+	Nav = Navigation.getElementsByTagName("a");
 	// Navigation.getElementsByTagName("li")[0].dispatchEvent(new Event("click"));
 }
 
-function loadDocument(url) {
+function loadDocument(el) {
 	// console.log("Loaded : ", url);
-	var t = event.target;
+	var t = el;
+	var url = el.getAttribute("path");
 	if (t.classList.contains("active")) return false;
 	
-	var historyUrl = Setup.path + Page[0] + "/" + t.innerText;
+	// var historyUrl = Setup.path + Page[0] + "/" + t.innerText;
 	// var historyUrl = Setup.path + "/" + Page[0] + "/" + t.innerText;
 	// url = "./docs" + Page[1] + "/" + url;
 	url = Setup.path + "docs/" + Page[1] + "/" + url;
-	console.log("HistoyURL: " + historyUrl);
+	// console.log("HistoyURL: " + historyUrl);
 	console.log("URL      : " + url);
 	fetch(url)
 	.then(response => response.text())
