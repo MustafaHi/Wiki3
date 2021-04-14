@@ -10,8 +10,8 @@ router.on({
         console.log("PARAM: " + JSON.stringify(data));
         if (Page[0] !== data.page.toLowerCase())
         {
-            setupNav(Page[2]);
             Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
+            setupNav(Page[2]);
         }
         loadDocument(data);
     },
@@ -20,8 +20,8 @@ router.on({
         console.log("PARAM: " + JSON.stringify(data));
         if (Page[0] !== data.page.toLowerCase())
         {
-            setupNav(Page[2]);
             Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
+            setupNav(Page[2]);
         }
         Navigation.querySelector('a').click();
     },
@@ -30,8 +30,8 @@ router.on({
         console.log("PARAM: " + JSON.stringify(data));
         if (Page[0] !== data.page.toLowerCase())
         {
-            setupNav(Page[2]);
             Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
+            setupNav(Page[2]);
         }
         Navigation.querySelector('a').click();
     },
