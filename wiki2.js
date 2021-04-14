@@ -5,14 +5,8 @@ var Page, Navigation, ToC, toc, Doc;
 zenscroll.setup(200, 60);
 
 router.on({
-    '*': function() {
-        console.log("ROUTER: *");
-
-        Page = Setup.pages[0];
-        Init();
-    },
-    ':page': function({param}) {
-        console.log("ROUTER: :page");
+    ':page/:nav/:doc': function({param}) {
+        console.log("ROUTER: :page/:nav/:doc");
         console.log("PARAM: " + JSON.stringify(param));
         Page = Setup.pages.find(p=> p[0].toLowerCase() === param.page.toLowerCase()) ?? Setup.pages[0];
     },
@@ -21,10 +15,16 @@ router.on({
         console.log("PARAM: " + JSON.stringify(param));
         Page = Setup.pages.find(p=> p[0].toLowerCase() === param.page.toLowerCase()) ?? Setup.pages[0];
     },
-    ':page/:nav/:doc': function({param}) {
-        console.log("ROUTER: :page/:nav/:doc");
+    ':page': function({param}) {
+        console.log("ROUTER: :page");
         console.log("PARAM: " + JSON.stringify(param));
         Page = Setup.pages.find(p=> p[0].toLowerCase() === param.page.toLowerCase()) ?? Setup.pages[0];
+    },
+    '*': function() {
+        console.log("ROUTER: *");
+
+        Page = Setup.pages[0];
+        Init();
     }
 }).resolve();
 
