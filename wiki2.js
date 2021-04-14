@@ -1,3 +1,5 @@
+Init();
+
 var router = new Navigo(Setup.root);
 
 var Page = [], Navigation, ToC, toc = [], Doc;
@@ -39,11 +41,12 @@ router.on({
         console.log("ROUTER: *");
 
         Page = Setup.pages[0];
-        Init();
+        setupNav(Page[2]);
+        Navigation.querySelector('a').click();
     }
 }).resolve();
 
-Init();
+
 function Init() {
     const Wiki = document.getElementById("wiki");
     
