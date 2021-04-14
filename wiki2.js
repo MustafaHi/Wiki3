@@ -5,20 +5,20 @@ var Page, Navigation, ToC, toc, Doc;
 zenscroll.setup(200, 60);
 
 router.on({
-    ':page/:nav/:doc': function({param}) {
+    ':page/:nav/:doc': function({data}) {
         console.log("ROUTER: :page/:nav/:doc");
-        console.log("PARAM: " + JSON.stringify(param));
-        Page = Setup.pages.find(p=> p[0].toLowerCase() === param.page.toLowerCase()) ?? Setup.pages[0];
+        console.log("PARAM: " + JSON.stringify(data));
+        Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
     },
-    ':page/:nav': function({param}) {
+    ':page/:nav': function({data}) {
         console.log("ROUTER: :page/:nav");
-        console.log("PARAM: " + JSON.stringify(param));
-        Page = Setup.pages.find(p=> p[0].toLowerCase() === param.page.toLowerCase()) ?? Setup.pages[0];
+        console.log("PARAM: " + JSON.stringify(data));
+        Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
     },
-    ':page': function({param}) {
+    ':page': function({data}) {
         console.log("ROUTER: :page");
-        console.log("PARAM: " + JSON.stringify(param));
-        Page = Setup.pages.find(p=> p[0].toLowerCase() === param.page.toLowerCase()) ?? Setup.pages[0];
+        console.log("PARAM: " + JSON.stringify(data));
+        Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
     },
     '*': function() {
         console.log("ROUTER: *");
