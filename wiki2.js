@@ -43,10 +43,7 @@ router.on({
     }
 }).resolve();
 
-document.onload = function() {
-    Init();
-}
-
+Init();
 function Init() {
     const Wiki = document.getElementById("wiki");
     
