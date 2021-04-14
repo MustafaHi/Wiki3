@@ -113,8 +113,8 @@ function setupNav(list) {
 
 
 function loadDocument(param) {
-    var nav = Page[2].find(n => n.t.toLowerCase === param.nav.toLowerCase());
-    var doc = nav.c.find(d => d.t === param.doc.toLowerCase());
+    var nav = Page[2].find(n => n.t.toLowerCase() === param.nav.toLowerCase());
+    var doc =   nav.c.find(d => d.t.toLowerCase() === param.doc.toLowerCase());
 
     if (!nav || !doc) return false;
     var url = Setup.root + '/' + Page[1] + '/' + doc.l;
