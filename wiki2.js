@@ -93,9 +93,9 @@ function setupNav(list) {
 	function ar(list, owner) {
 		var arr = "<ul>";
 		for (var i of list) {
-			if (i.c) arr += '<li>' + i.t + ' ' + ar(i.c, i.t) + '</li>';
-			else arr += '<li><a href="/' + Setup.root + "/" + Page[0] + "/" + owner + "/" + i.t + '" data-navigo>' + i.t + '</a></li>';
-			// else arr += '<li><a href="' + i.t + '" data-navigo>' + i.t + '</a></li>';
+			if (i.c) arr += '<li>' + i.t + ' ' + ar(i.c) + '</li>';
+			else arr += '<li><a href="' + i.t + '" data-navigo>' + i.t + '</a></li>';
+			// else arr += '<li><a href="' + Setup.root + "/" + Page[0] + "/" + owner + "/" + i.t + '" data-navigo>' + i.t + '</a></li>';
 			// else arr += '<li><a href="' + Page[0] + "/" + i.t + '" path="' + i.l + '" data-navigo>' + i.t + '</a></li>';
 		}
 		arr += "</ul>";
@@ -107,7 +107,8 @@ function setupNav(list) {
 		if (item.c) ht += ar(item.c, item.t);
 	}
 	Navigation.innerHTML = ht;
-	Nav = Navigation.getElementsByTagName("a");
+	// Nav = Navigation.getElementsByTagName("a");
+    router.updatePageLinks();
 	// Navigation.getElementsByTagName("li")[0].dispatchEvent(new Event("click"));
 }
 
@@ -118,6 +119,7 @@ function loadDocument(param) {
 
     if (!nav || !doc) return false;
     var url = Setup.root + '/' + Page[1] + '/' + doc.l;
+    console.log(url);
     
     fetch(url).then(response => response.text())
     .then((data) => {
