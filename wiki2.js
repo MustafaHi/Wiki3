@@ -94,7 +94,7 @@ function setupNav(list) {
 		var arr = "<ul>";
 		for (var i of list) {
 			if (i.c) arr += '<li>' + i.t + ' ' + ar(i.c, i.t) + '</li>';
-			else arr += '<li><a href="' + owner + "/" + i.t + '" data-navigo>' + i.t + '</a></li>';
+			else arr += '<li><a href="' + Page[0] + "/" + owner + "/" + i.t + '" data-navigo>' + i.t + '</a></li>';
 			// else arr += '<li><a href="' + i.t + '" data-navigo>' + i.t + '</a></li>';
 			// else arr += '<li><a href="' + Page[0] + "/" + i.t + '" path="' + i.l + '" data-navigo>' + i.t + '</a></li>';
 		}
