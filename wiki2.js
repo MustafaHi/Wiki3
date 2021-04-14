@@ -29,9 +29,6 @@ router.on({
 }).resolve();
 
 function Init() {
-	setupNav(Page[2]);
-	// Setup.pages.forEach((p) => {HTML += '<a href="'+ Setup.path + p[0] +'" data-navigo>'+p[0]+'</a>';});
-    
     const Wiki = document.getElementById("wiki");
     
     var HTML = "";
@@ -43,17 +40,19 @@ function Init() {
     }
     Setup.pages.forEach((p) => {HTML += '<a href="'+ p[0] +'" data-navigo>'+p[0]+'</a>';});
 	document.getElementById("Pages").innerHTML = HTML;
-
+    
 	document.getElementById("toggleNav").addEventListener("click",   () => {
-		Navigation.classList.toggle("show");
+        Navigation.classList.toggle("show");
 	});
 	document.getElementById("toggleTheme").addEventListener("click", () => {
-		document.body.classList.toggle("dark");
+        document.body.classList.toggle("dark");
 	});
-
+    
     Navigation = document.getElementById('Navigation');
     ToC = document.getElementById('TableOfContent');
     Doc = document.getElementById('Doc');
+
+    setupNav(Page[2]);
 }
 
 var renderer = (function () {
