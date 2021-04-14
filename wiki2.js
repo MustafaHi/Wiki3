@@ -8,17 +8,32 @@ router.on({
     ':page/:nav/:doc': function({data}) {
         console.log("ROUTER: :page/:nav/:doc");
         console.log("PARAM: " + JSON.stringify(data));
-        Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
+        if (Page[0] !== data.page.toLowerCase())
+        {
+            setupNav(Page[2]);
+            Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
+        }
+        loadDocument(data);
     },
     ':page/:nav': function({data}) {
         console.log("ROUTER: :page/:nav");
         console.log("PARAM: " + JSON.stringify(data));
-        Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
+        if (Page[0] !== data.page.toLowerCase())
+        {
+            setupNav(Page[2]);
+            Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
+        }
+        Navigation.querySelector('a').click();
     },
     ':page': function({data}) {
         console.log("ROUTER: :page");
         console.log("PARAM: " + JSON.stringify(data));
-        Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
+        if (Page[0] !== data.page.toLowerCase())
+        {
+            setupNav(Page[2]);
+            Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
+        }
+        Navigation.querySelector('a').click();
     },
     '*': function() {
         console.log("ROUTER: *");
@@ -27,6 +42,10 @@ router.on({
         Init();
     }
 }).resolve();
+
+document.onload = function() {
+    Init();
+}
 
 function Init() {
     const Wiki = document.getElementById("wiki");
@@ -51,8 +70,6 @@ function Init() {
     Navigation = document.getElementById('Navigation');
     ToC = document.getElementById('TableOfContent');
     Doc = document.getElementById('Doc');
-
-    setupNav(Page[2]);
 }
 
 var renderer = (function () {
