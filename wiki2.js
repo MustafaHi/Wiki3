@@ -25,7 +25,7 @@ router.on({
             Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
             setupNav(Page[2]);
         }
-        Navigation.querySelector('a').click();
+        // Navigation.querySelector('a').click();
     },
     ':page': function({data}) {
         console.log("ROUTER: :page");
@@ -35,14 +35,14 @@ router.on({
             Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
             setupNav(Page[2]);
         }
-        Navigation.querySelector('a').click();
+        // Navigation.querySelector('a').click();
     },
     '*': function() {
         console.log("ROUTER: *");
 
         Page = Setup.pages[0];
         setupNav(Page[2]);
-        Navigation.querySelector('a').click();
+        // Navigation.querySelector('a').click();
     }
 }).resolve();
 
@@ -90,11 +90,12 @@ function poke(str, ...args) {
 }
 
 function setupNav(list) {
-	function ar(list) {
+	function ar(list, owner) {
 		var arr = "<ul>";
 		for (var i of list) {
-			if (i.c) arr += '<li>' + i.t + ' ' + ar(i.c) + '</li>';
-			else arr += '<li><a href="' + Page[0] + "/" + i.t + '" data-navigo>' + i.t + '</a></li>';
+			if (i.c) arr += '<li>' + i.t + ' ' + ar(i.c, i.t) + '</li>';
+			else arr += '<li><a href="' + owner + "/" + i.t + '" data-navigo>' + i.t + '</a></li>';
+			// else arr += '<li><a href="' + i.t + '" data-navigo>' + i.t + '</a></li>';
 			// else arr += '<li><a href="' + Page[0] + "/" + i.t + '" path="' + i.l + '" data-navigo>' + i.t + '</a></li>';
 		}
 		arr += "</ul>";
@@ -103,7 +104,7 @@ function setupNav(list) {
 	var ht = "";
 	for (var item of list) {
 		ht += '<p>' + item.t + '</p>';
-		if (item.c) ht += ar(item.c);
+		if (item.c) ht += ar(item.c, item.t);
 	}
 	Navigation.innerHTML = ht;
 	Nav = Navigation.getElementsByTagName("a");
