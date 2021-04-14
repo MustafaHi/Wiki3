@@ -1,6 +1,6 @@
 var router = new Navigo(Setup.root);
 
-var Page, Navigation, ToC, toc, Doc;
+var Page = [], Navigation, ToC, toc = [], Doc;
 
 zenscroll.setup(200, 60);
 
