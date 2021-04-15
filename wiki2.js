@@ -22,7 +22,7 @@ router.on({
     },
     ':page': function(param) {
         console.log("ROUTER: :page");
-        console.log("PARAM: " + JSON.stringify(data));
+        console.log("PARAM: " + JSON.stringify(param));
         let paramPage = param.data.page.toLowerCase();
         if (Page[0]?.toLowerCase() !== paramPage)
         {
