@@ -7,25 +7,17 @@ var Page = [], Navigation, ToC, toc = [], Doc;
 zenscroll.setup(200, 60);
 
 router.on({
-    ':page/:nav/:doc': function({data}) {
-        console.log("ROUTER: :page/:nav/:doc");
-        console.log("PARAM: " + JSON.stringify(data));
-        if (Page[0] !== data.page.toLowerCase())
+    ':page/:*': function(param) {
+        console.log("ROUTER: :page/*");
+        console.log("PARAM : " + JSON.stringify(param));
+        let paramPage = param.data.page.toLowerCase();
+        if (Page[0].toLowerCase() !== paramPage)
         {
-            Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
+            Page = Setup.pages.find(p=> p[0].toLowerCase() === paramPage) ?? Setup.pages[0];
             setupNav(Page[2]);
         }
-        loadDocument(data);
-    },
-    ':page/:nav': function({data}) {
-        console.log("ROUTER: :page/:nav");
-        console.log("PARAM: " + JSON.stringify(data));
-        if (Page[0] !== data.page.toLowerCase())
-        {
-            Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
-            setupNav(Page[2]);
-        }
-        // Navigation.querySelector('a').click();
+        var el = Navigation.querySelector('a[href="/'+ param.url +'"]');
+        loadDocument(el.getAttribute("path"), el.textContent);
     },
     ':page': function({data}) {
         console.log("ROUTER: :page");
@@ -35,14 +27,14 @@ router.on({
             Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
             setupNav(Page[2]);
         }
-        // Navigation.querySelector('a').click();
+        Navigation.querySelector('a').click();
     },
     '*': function() {
         console.log("ROUTER: *");
 
         Page = Setup.pages[0];
         setupNav(Page[2]);
-        // Navigation.querySelector('a').click();
+        Navigation.querySelector('a').click();
     }
 }).resolve();
 
@@ -52,7 +44,7 @@ function Init() {
     
     var HTML = "";
     if (Setup.header) {
-        HTML =  '<header><div class="wrapper flow-horizontal"><div class="left"><div class="btn" id="toggleNav"><svg viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"></path></svg></div><a href="/'+ Setup.root +'">'+ Setup.title +'</a><div id="Pages"></div></div><div class="right"><div id="Social"></div><div id="Search" tabindex="1"><input type="search" id="iSearch" placeholder="Search"><div id="searchContent" tabindex="88"></div></div><div class="btn" id="toggleTheme"><div class="themeSwitch"></div></div></div></div></header>';
+        HTML =  '<header><div class="wrapper flow-horizontal"><div class="left"><div class="btn" id="toggleNav"><svg viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"></path></svg></div><a href="'+ Setup.root +'">'+ Setup.title +'</a><div id="Pages"></div></div><div class="right"><div id="Social"></div><div id="Search" tabindex="0"><input type="search" id="iSearch" placeholder="Search"><div id="searchContent" tabindex="0"></div></div><div class="btn" id="toggleTheme"><div class="themeSwitch"></div></div></div></div></header>';
         HTML += '<div class="content wrapper flow-horizontal" id="wiki"><nav id="Navigation"></nav><div id="Doc" class="markdown-body line-numbers"></div><nav id="TableOfContent"></nav></div>';
         Wiki.innerHTML = HTML;
         HTML = "";
@@ -84,19 +76,19 @@ var renderer = (function () {
 marked.setOptions({renderer: renderer});
 
 function poke(str, ...args) {
-  return str.replace(/{(\d+)}/g, function(match, number) { 
+  return str.replace(/{(\d+)}/g, function(match, number) {
     return typeof args[number] != 'undefined' ? args[number] : match;
   });
 }
 
 function setupNav(list) {
+    var path = Setup.root.length > 1 ? Setup.root + "/" + Page[0] : "/" + Page[0];
 	function ar(list, owner) {
 		var arr = "<ul>";
 		for (var i of list) {
-			if (i.c) arr += '<li>' + i.t + ' ' + ar(i.c) + '</li>';
-			else arr += '<li><a href="' + i.t + '" data-navigo>' + i.t + '</a></li>';
-			// else arr += '<li><a href="' + Setup.root + "/" + Page[0] + "/" + owner + "/" + i.t + '" data-navigo>' + i.t + '</a></li>';
-			// else arr += '<li><a href="' + Page[0] + "/" + i.t + '" path="' + i.l + '" data-navigo>' + i.t + '</a></li>';
+			if (i.c) arr += '<li>' + i.t + ' ' + ar(i.c, owner + '/' + i.t) + '</li>';
+			else arr += '<li><a href="' + path + "/" + owner + "/" + i.t + '" path="' + Page[1] + i.l + '" data-navigo>' + i.t + '</a></li>';
+			// else arr += '<li><a href="' + Page[0] + "/" + owner + "/" + i.t + '" path="' + i.l + '" data-navigo>' + i.t + '</a></li>';
 		}
 		arr += "</ul>";
 		return arr;
@@ -113,12 +105,7 @@ function setupNav(list) {
 }
 
 
-function loadDocument(param) {
-    var nav = Page[2].find(n => n.t.toLowerCase() === param.nav.toLowerCase());
-    var doc =   nav.c.find(d => d.t.toLowerCase() === param.doc.toLowerCase());
-
-    if (!nav || !doc) return false;
-    var url = Setup.root + '/' + Page[1] + '/' + doc.l;
+function loadDocument(url, title) {
     console.log(url);
     
     fetch(url).then(response => response.text())
@@ -130,7 +117,7 @@ function loadDocument(param) {
 
         Table();
     });
-    document.title = Setup.title + " | " + doc.t;
+    document.title = Setup.title + " | " + title;
     return true;
 };
 

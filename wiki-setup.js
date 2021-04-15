@@ -48,6 +48,7 @@ const guideList = [{
 const Setup = {
 	title: "Wiki3 ",
 	root: "/Wiki3/",
+	fileURL: false,
 	header: true,
 	search: true,
 	theme : true,
@@ -58,5 +59,5 @@ const Setup = {
 	integratedToC : false,
 	paragraphLink : true,
 	selectionLink : true,
-	pages: [["Main", "", setupList], ["Guide", "", guideList]]
+	pages: [["Main", "/docs/", setupList], ["Guide", "/docs/", guideList]]
 };
