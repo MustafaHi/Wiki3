@@ -28,14 +28,14 @@ router.on({
             Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
             setupNav(Page[2]);
         }
-        // Navigation.querySelector('a').click();
+        Navigation.querySelector('a').click();
     },
     '*': function() {
         console.log("ROUTER: *");
 
         Page = Setup.pages[0];
         setupNav(Page[2]);
-        // Navigation.querySelector('a').click();
+        Navigation.querySelector('a').click();
     }
 }).resolve();
 
@@ -83,13 +83,11 @@ function poke(str, ...args) {
 }
 
 function setupNav(list) {
-    // var path = Setup.root.length > 1 ? Setup.root + "/" + Page[0] : "/" + Page[0];
 	function ar(list, owner) {
 		var arr = "<ul>";
 		for (var i of list) {
 			if (i.c) arr += '<li>' + i.t + ' ' + ar(i.c, owner + '/' + i.t) + '</li>';
 			else arr += '<li><a href="/' + Page[0] + "/" + owner + "/" + i.t + '" path="' + Setup.root + Page[1] + i.l + '" data-navigo>' + i.t + '</a></li>';
-			// else arr += '<li><a href="' + Page[0] + "/" + owner + "/" + i.t + '" path="' + i.l + '" data-navigo>' + i.t + '</a></li>';
 		}
 		arr += "</ul>";
 		return arr;
@@ -100,9 +98,7 @@ function setupNav(list) {
 		if (item.c) ht += ar(item.c, item.t);
 	}
 	Navigation.innerHTML = ht;
-	// Nav = Navigation.getElementsByTagName("a");
     router.updatePageLinks();
-	// Navigation.getElementsByTagName("li")[0].dispatchEvent(new Event("click"));
 }
 
 
