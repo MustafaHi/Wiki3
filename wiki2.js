@@ -20,7 +20,7 @@ router.on({
         if (el) loadDocument(el.getAttribute("path"), el.textContent)
         else    Doc.innerHTML = "<h1>404 NOT FOUND!</h1><p>Please make sure the URL is currect.</p>";
     },
-    ':page': function({data}) {
+    ':page': function(param) {
         console.log("ROUTER: :page");
         console.log("PARAM: " + JSON.stringify(data));
         let paramPage = param.data.page.toLowerCase();
