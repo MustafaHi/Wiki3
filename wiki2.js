@@ -88,7 +88,7 @@ function setupNav(list) {
 		var arr = "<ul>";
 		for (var i of list) {
 			if (i.c) arr += '<li>' + i.t + ' ' + ar(i.c, owner + '/' + i.t) + '</li>';
-			else arr += '<li><a href="' + Setup.root + Page[0] + "/" + owner + "/" + i.t + '" path="' + Page[1] + i.l + '" data-navigo>' + i.t + '</a></li>';
+			else arr += '<li><a href="/' + Page[0] + "/" + owner + "/" + i.t + '" path="' + Page[1] + i.l + '" data-navigo>' + i.t + '</a></li>';
 			// else arr += '<li><a href="' + Page[0] + "/" + owner + "/" + i.t + '" path="' + i.l + '" data-navigo>' + i.t + '</a></li>';
 		}
 		arr += "</ul>";
