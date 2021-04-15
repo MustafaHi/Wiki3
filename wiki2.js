@@ -11,7 +11,7 @@ router.on({
         console.log("ROUTER: :page/*");
         console.log("PARAM : " + JSON.stringify(param));
         let paramPage = param.data.page.toLowerCase();
-        if (Page[0].toLowerCase() !== paramPage)
+        if (Page[0]?.toLowerCase() !== paramPage)
         {
             Page = Setup.pages.find(p=> p[0].toLowerCase() === paramPage) ?? Setup.pages[0];
             setupNav(Page[2]);
@@ -23,9 +23,10 @@ router.on({
     ':page': function({data}) {
         console.log("ROUTER: :page");
         console.log("PARAM: " + JSON.stringify(data));
-        if (Page[0] !== data.page.toLowerCase())
+        let paramPage = param.data.page.toLowerCase();
+        if (Page[0]?.toLowerCase() !== paramPage)
         {
-            Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
+            Page = Setup.pages.find(p=> p[0].toLowerCase() === paramPage) ?? Setup.pages[0];
             setupNav(Page[2]);
         }
         Navigation.querySelector('a').click();
