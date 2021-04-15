@@ -16,7 +16,7 @@ router.on({
             Page = Setup.pages.find(p=> p[0].toLowerCase() === paramPage) ?? Setup.pages[0];
             setupNav(Page[2]);
         }
-        var el = Navigation.querySelector('a[href="/'+ param.url +'"]');
+        var el = Navigation.querySelector('a[href="/'+ decodeURI(param.url) +'"]');
         if (el) loadDocument(el.getAttribute("path"), el.textContent)
         else    Doc.innerHTML = "<h1>404 NOT FOUND!</h1><p>Please make sure the URL is currect.</p>";
     },
