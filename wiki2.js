@@ -17,7 +17,8 @@ router.on({
             setupNav(Page[2]);
         }
         var el = Navigation.querySelector('a[href="/'+ param.url +'"]');
-        loadDocument(el.getAttribute("path"), el.textContent);
+        if (el) loadDocument(el.getAttribute("path"), el.textContent)
+        else    Doc.innerHTML = "<h1>404 NOT FOUND!</h1><p>Please make sure the URL is currect.</p>";
     },
     ':page': function({data}) {
         console.log("ROUTER: :page");
@@ -27,14 +28,14 @@ router.on({
             Page = Setup.pages.find(p=> p[0].toLowerCase() === data.page.toLowerCase()) ?? Setup.pages[0];
             setupNav(Page[2]);
         }
-        Navigation.querySelector('a').click();
+        // Navigation.querySelector('a').click();
     },
     '*': function() {
         console.log("ROUTER: *");
 
         Page = Setup.pages[0];
         setupNav(Page[2]);
-        Navigation.querySelector('a').click();
+        // Navigation.querySelector('a').click();
     }
 }).resolve();
 
