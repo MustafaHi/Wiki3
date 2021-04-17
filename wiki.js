@@ -3,7 +3,7 @@
 
 Init();
 
-var router = new Navigo('/', { linksSelector: "a" });
+var router = new Navigo('/');
 
 var Page = [], Navigation, ToC, toc = [], Doc;
 
