@@ -30,13 +30,13 @@ router.on({
             Page = Setup.pages.find(p=> p[0].toLowerCase() === paramPage) ?? Setup.pages[0];
             setupNav(Page[2]);
         }
-        Navigation.querySelector('a').click();
+        // Navigation.querySelector('a').click();
     },
     '*': function() {
         console.log("ROUTER: *");
         Page = Setup.pages[0];
         setupNav(Page[2]);
-        Navigation.querySelector('a').click();
+        // Navigation.querySelector('a').click();
     }
 }).resolve();
 
