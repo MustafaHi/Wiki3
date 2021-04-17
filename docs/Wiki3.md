@@ -26,7 +26,7 @@ Requires no building or compiling, you just drop the files once and your website
 You can checkout `>` [Roadmap](https://github.com/MustafaHi/Wiki3/wiki/Roadmap)
 
 
-`>` [Getting Started](/Main/Getting%20Started/Installation)
+`>` [Getting Started](/Wiki3/Main/Getting%20Started/Installation)
 
 
 ## Credit

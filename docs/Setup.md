@@ -1,6 +1,6 @@
 # Setup
 
-After you are done with [Installation](/Main/Getting%20Started/Installation), You must config the `wiki-setup.js` file, to your liking.
+After you are done with [Installation](/Wiki3/Main/Getting%20Started/Installation), You must config the `wiki-setup.js` file, to your liking.
 
 The following table represent the `const Setup` object properties.
 
