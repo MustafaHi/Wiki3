@@ -48,7 +48,7 @@ function Init() {
     if (Setup.header) 
     {
         HTML =  '<header><div class="wrapper flow-horizontal"><div class="left"><div class="btn" id="toggleNav"><svg viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"></path></svg></div><a href="'+ Setup.root +'">'+ Setup.title +'</a><div id="Pages">';
-        Setup.pages.forEach((p) => {HTML += '<a href="'+ Setup.root + p[0] +'" data-navigo>'+ p[0] +'</a>';});
+        Setup.pages.forEach((p) => {HTML += '<a href="/'+ p[0] +'" data-navigo>'+ p[0] +'</a>';});
         HTML += '</div></div><div class="right"><div id="Social"></div><div id="Search" tabindex="0"><input type="search" id="iSearch" placeholder="Search"><div id="searchContent" tabindex="0"></div></div><div class="btn" id="toggleTheme"><div class="themeSwitch"></div></div></div></div></header>';
     }
     HTML += '<div class="content wrapper flow-horizontal" id="wiki"><nav id="Navigation"></nav><div id="Doc" class="markdown-body line-numbers"></div><nav id="TableOfContent"></nav></div>';
