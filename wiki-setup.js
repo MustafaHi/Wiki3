@@ -21,8 +21,8 @@ const setupList = [{
 const guideList = [{
 	t: "Developer",
 	c: [
-		{ t: "Welcome", l: "welcome.md"},
-		{ t: "Wiki.js", l: "roadmap.md"},
+		{ t: "Welcome", l: "Wiki3.md"},
+		{ t: "Wiki.js", l: "Setup.md"},
 	]
 }];
 
