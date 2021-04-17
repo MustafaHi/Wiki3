@@ -30,13 +30,13 @@ router.on({
             Page = Setup.pages.find(p=> p[0].toLowerCase() === paramPage) ?? Setup.pages[0];
             setupNav(Page[2]);
         }
-        // Navigation.querySelector('a').click();
+        Navigation.querySelector('a').click();
     },
     '*': function() {
         console.log("ROUTER: *");
         Page = Setup.pages[0];
         setupNav(Page[2]);
-        // Navigation.querySelector('a').click();
+        Navigation.querySelector('a').click();
     }
 }).resolve();
 
@@ -119,6 +119,7 @@ function loadDocument(param) {
         if (hash)  zenscroll.to(hash);
 
         window.Prism.highlightAllUnder(Doc);
+        router.updatePageLinks();
     });
     document.title = Setup.title + " | " + el.textContent;
     return true;
