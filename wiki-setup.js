@@ -30,7 +30,7 @@ const guideList = [{
 
 const Setup = {
 	title: "Wiki3 ",
-	root: "/Wiki3/",
+	root: "/",
 	fileURL: false,
 	header: true,
 	search: true,
