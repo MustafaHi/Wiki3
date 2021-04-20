@@ -631,7 +631,9 @@ header a:hover {
 .content {
 	height: 100%;
 }
-
+[hidden] {
+	display: none !important;
+}
 nav {
 	padding: 1em;
 	font-size: 14px;
@@ -640,6 +642,7 @@ nav {
 	/*	flex-direction: column;*/
 	display: block;
 	width: 350px;
+	max-width: 100%;
 	/* overflow: hidden; */
 	overflow-y: auto;
 	position: sticky;
@@ -649,6 +652,12 @@ nav {
 	height: 100%;
 	z-index: 99;
 	box-sizing: border-box;
+}
+nav li nav {
+	padding: 0;
+}
+nav li p {
+	font-size: 0.9em;
 }
 
 nav.show {
@@ -680,7 +689,7 @@ nav a:hover {
 	padding: 0 6px 0 0;
 }
 
-Nav a {
+nav a {
 	padding: 6px;
 }
 

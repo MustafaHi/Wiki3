@@ -8,17 +8,17 @@ The following table represent the `const Setup` object properties.
 | --- | --- |
 | title | title of your website |
 | root  | the root path of your website, if you are on github `/repoName/` or `/`
-| *fileURL | will use file url as defined is `l` property of file, otherwise it will use title |
+| fileURL | will use file url as defined is `l` property of file, otherwise it will use title |
 | header  | use Wiki3 own header with all it features |
 | *search | enable search |
 | theme   | enable dark theme switch |
-| *tracking  | Table of Content tracking of current position |
+| *tracking | Table of Content tracking of current position |
 | *codeTabs | like [this](https://www.w3schools.com/howto/howto_js_tabs.asp) for code |
-| TableOfContent  | show a list of the header 1-6 |
-| *integratedToC  | Table of content will show in the Navigation instead of it own area |
-| *paragraphLink  | allows paragraph liking like with headers |
-| *selectionLink  | like to specific text selection that will be highlighted |
-| pages | !Required, takes an array of pages `["pageTitle", "folderPath", listObject]`
+| TableOfContent  | show a list of the headers 1-6 |
+| integratedToC   | Table of content will show in the Navigation instead of it own area |
+| *paragraphLink  | allows paragraph linking like with headers |
+| *selectionLink  | link to specific text selection that will be highlighted |
+| pages | !Required, takes an array of pages `["pageTitle", "folderPath/", listObject]`
 
 
 *current option is not operational yet.

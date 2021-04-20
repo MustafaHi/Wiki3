@@ -31,14 +31,14 @@ const guideList = [{
 const Setup = {
 	title: "Wiki3 ",
 	root: "/Wiki3/",
-	fileURL: false,
+	fileURL: true,
 	header: true,
-	search: true,
-	theme : true,
+	search: false,
+	theme : false,
 	tracking: true,
 	codeTabs: true,
 	TableOfContent: true,
-	integratedToC : false,
+	integratedToC : true,
 	paragraphLink : true,
 	selectionLink : true,
 	pages: [["Main", "docs/", setupList], ["Guide", "docs/", guideList]]
