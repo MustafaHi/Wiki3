@@ -103,7 +103,7 @@ function setupNav(list) {
 
 function loadDocument(param) {
     console.log(param.url);
-    var  el = Navigation.querySelector('a[href="/'+ decodeURI(param.url) +'"]');
+    var  el = Navigation.querySelector('a[href="'+ decodeURI(param.url) +'"]');
     if (!el)
     {
         Doc.innerHTML = "<h1>404 NOT FOUND!</h1><p>Please make sure the URL is correct.</p>";
