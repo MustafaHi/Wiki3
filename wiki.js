@@ -3,14 +3,14 @@
 
 Init();
 
-var router = new Navigo(Setup.root, { linksSelector: '#doc a', strategy: 'ONE' });
+var router = new Navigo('/', { linksSelector: '#Doc a, #Pages a, #Navigation a', strategy: 'ONE' });
 
 var Page = [], Navigation, ToC, toc = [], Doc;
 
 zenscroll.setup(200, 60);
 
 router.on({
-    ':page/:*': function(param) {
+    ':root/:page/:*': function(param) {
         console.log("ROUTER: :page/*");
         console.log("PARAM : " + JSON.stringify(param));
         let paramPage = param.data.page.toLowerCase();
@@ -21,7 +21,7 @@ router.on({
         }
         loadDocument(param);
     },
-    ':page': function(param) {
+    ':root/:page': function(param) {
         console.log("ROUTER: :page");
         console.log("PARAM: " + JSON.stringify(param));
         let paramPage = param.data.page.toLowerCase();
@@ -48,7 +48,7 @@ function Init() {
     if (Setup.header) 
     {
         HTML =  '<header><div class="wrapper flow-horizontal"><div class="left"><div class="btn" id="toggleNav"><svg viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"></path></svg></div><a href="'+ Setup.root +'">'+ Setup.title +'</a><div id="Pages">';
-        Setup.pages.forEach((p) => {HTML += '<a href="/'+ p[0] +'" data-navigo>'+ p[0] +'</a>';});
+        Setup.pages.forEach((p) => {HTML += '<a href="'+ Setup.root + p[0] +'" data-navigo>'+ p[0] +'</a>';});
         HTML += '</div></div><div class="right"><div id="Social"></div>'
         + '<div id="Search" tabindex="0" '+ (Setup.search ? '' : 'hidden') +'><input type="search" id="iSearch" placeholder="Search"><div id="searchContent" tabindex="0"></div></div>'
         + '<div class="btn" id="toggleTheme" '+ (Setup.theme ? '' : 'hidden') +'><div class="themeSwitch"></div></div></div></div></header>';
@@ -106,7 +106,7 @@ function setupNav(list) {
 
 function loadDocument(param) {
     console.log(param.url);
-    var  el = Navigation.querySelector('a[href="'+ decodeURI(param.url) +'"]');
+    var  el = Navigation.querySelector('a[href="/'+ decodeURI(param.url) +'"]');
     if (!el)
     {
         Doc.innerHTML = "<h1>404 NOT FOUND!</h1><p>Please make sure the URL is correct.</p>";
