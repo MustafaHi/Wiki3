@@ -1,6 +1,6 @@
 # Setup
 
-After you are done with [Installation](/Wiki3/Main/Getting%20Started/Installation), You must config the `wiki-setup.js` file, to your liking.
+After you are done with [Installation](/Wiki3/Main/Getting-Started/Installation), You must config the `wiki-setup.js` file, to your liking.
 
 The following table represent the `const Setup` object properties.
 
@@ -8,7 +8,7 @@ The following table represent the `const Setup` object properties.
 | --- | --- |
 | title | title of your website |
 | root  | the root path of your website, if you are on github `/repoName/` or `/`
-| fileURL | will use file url as defined is `l` property of file, otherwise it will use title |
+| fileURL | will use file url as defined in `l` property, otherwise it will use `t`itle |
 | header  | use Wiki3 own header with all it features |
 | *search | enable search |
 | theme   | enable dark theme switch |
