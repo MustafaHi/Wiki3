@@ -730,8 +730,7 @@ nav a {
 	overflow: hidden;
 }
 
-@media (max-width: 1050px) {
-	/* nav { background: red; } */
+/* @media (max-width: 1050px) {
 	#Navigation {
 		display: none;
 		position: fixed;
@@ -739,7 +738,6 @@ nav a {
 		width: 100%;
 	}
 	nav.show {
-		/* top: 3rem; */
 		display: block !important;
 	}
 	.btn:focus {
@@ -748,7 +746,7 @@ nav a {
 	#Doc {
 		padding: 3em 1em 20em;
 	}
-}
+} */
 
 @media (max-width: 800px) {
 	/* nav { background: red; } */

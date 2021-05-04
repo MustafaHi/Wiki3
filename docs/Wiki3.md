@@ -37,8 +37,3 @@ current version use the following libraries:
 [Zenscroll](https://github.com/zengabor/zenscroll)
 [PrismJS](https://github.com/PrismJS/prism)
 
-```js
-async function() {
-    return null;
-}
-```

@@ -12,8 +12,6 @@ The following table represent the `const Setup` object properties.
 | header  | use Wiki3 own header with all it features |
 | *search | enable search |
 | theme   | enable dark theme switch |
-| *tracking | Table of Content tracking of current position |
-| *codeTabs | like [this](https://www.w3schools.com/howto/howto_js_tabs.asp) for code |
 | TableOfContent  | show a list of the headers 1-6 |
 | integratedToC   | Table of content will show in the Navigation instead of it own area |
 | *paragraphLink  | allows paragraph linking like with headers |

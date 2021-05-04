@@ -3,7 +3,7 @@
 
 Init();
 
-var router = new Navigo(Setup.root);
+var router = new Navigo(Setup.root, { linksSelector: "a", strategy: 'ONE' });
 
 var Page = [], Navigation, ToC, toc = [], Doc;
 
@@ -42,13 +42,13 @@ router.on({
 
 
 function Init() {
-    const Wiki = document.getElementById("wiki");
+    const Wiki = document.getElementById('wiki');
     
     var HTML = "";
     if (Setup.header) 
     {
         HTML =  '<header><div class="wrapper flow-horizontal"><div class="left"><div class="btn" id="toggleNav"><svg viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"></path></svg></div><a href="'+ Setup.root +'">'+ Setup.title +'</a><div id="Pages">';
-        Setup.pages.forEach((p) => {HTML += '<a href="'+ Setup.root + p[0] +'" data-navigo>'+ p[0] +'</a>';});
+        Setup.pages.forEach((p) => {HTML += '<a href="/'+ p[0] +'" data-navigo>'+ p[0] +'</a>';});
         HTML += '</div></div><div class="right"><div id="Social"></div>'
         + '<div id="Search" tabindex="0" '+ (Setup.search ? '' : 'hidden') +'><input type="search" id="iSearch" placeholder="Search"><div id="searchContent" tabindex="0"></div></div>'
         + '<div class="btn" id="toggleTheme" '+ (Setup.theme ? '' : 'hidden') +'><div class="themeSwitch"></div></div></div></div></header>';
@@ -81,12 +81,15 @@ marked.setOptions({renderer: renderer});
 
 
 function setupNav(list) {
+    function toUrl(string) {
+        return string.trim().replace(' ', '-');
+    }
 	function ar(list, owner) {
 		var arr = "<ul>";
 		for (var i of list) {
 			if (i.c) arr += '<li>' + i.t + ' ' + ar(i.c, owner + '/' + i.t) + '</li>';
 			else if(Setup.fileURL) arr += '<li><a href="'+ Setup.root + Page[0] + '/' + Page[1] + i.l.replace(/\.\w+$/, "") +'" path="'+ Setup.root + Page[1] + i.l +'" data-navigo>' + i.t + '</a></li>';
-			else arr += '<li><a href="' + Page[0] + '/' + owner + '/' + i.t + '" path="'+ Setup.root + Page[1] + i.l +'" data-navigo>' + i.t + '</a></li>';
+			else arr += '<li><a href="'+ Page[0] + '/' + toUrl(owner) + '/' + toUrl(i.t) + '" path="'+ Setup.root + Page[1] + i.l +'" data-navigo>' + i.t + '</a></li>';
 			// else arr += '<li><a href="'+ Setup.root + Page[0] + '/' + owner + '/' + i.t + '" path="'+ Setup.root + Page[1] + i.l +'" data-navigo>' + i.t + '</a></li>';
 		}
 		arr += "</ul>";

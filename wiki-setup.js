@@ -21,7 +21,7 @@ const setupList = [{
 const guideList = [{
 	t: "Developer",
 	c: [
-		{ t: "Welcome", l: "Wiki3.md"},
+		{ t: "Welcome", l: "markdown.md"},
 		{ t: "Wiki.js", l: "Setup.md"},
 	]
 }];
@@ -34,9 +34,7 @@ const Setup = {
 	fileURL: false,
 	header: true,
 	search: false,
-	theme : false,
-	tracking: true,
-	codeTabs: true,
+	theme : true,
 	TableOfContent: true,
 	integratedToC : false,
 	paragraphLink : true,
