@@ -18,7 +18,7 @@ Add the following HTML code
 
 2. If you need a custom 404 page then include `404.html` to your root directory(repo) and change the URL property inside it.
 
-3. Then edit `wiki-setup.js` following the `>` [Setup](/Wiki3/Main/Getting-Started/Setup) guide.
+3. Then edit `wiki-setup.js` following the `>` [Setup](/Main/Getting-Started/Setup) guide.
 
 
 make sure the script and link `src/href` properties point correctly to your files.

@@ -39,5 +39,5 @@ const Setup = {
 	integratedToC : false,
 	paragraphLink : true,
 	selectionLink : true,
-	pages: [["Main", "docs/", setupList], ["Guide", "docs/", guideList]]
+	pages: [["Main", "docs/", setupList], ["Developer", "docs/", guideList]]
 };
