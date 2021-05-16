@@ -1,18 +1,16 @@
 
 # Wiki3
 
-> Version : 0.1.1  
+> Version : 0.3 Beta  
 > [Website / Demo / Guide](https://MustafaHi.github.io/Wiki3/)  
 > [Change Log & Features](https://github.com/MustafaHi/Wiki3/wiki/Change-log-&-Features)  
 > [Release / Distribution](/Release)  
 > [Roadmap](https://github.com/MustafaHi/Wiki3/wiki/Roadmap)  
-> [Developer Guide](https://github.com/MustafaHi/Wiki3/wiki/Dev-Guide)  
+> [Developer Guide](https://MustafaHi.github.io/Wiki3/Developer)  
 > [Contribution Guidelines](https://github.com/MustafaHi/Wiki3/wiki/Dev-Guide)  
 > More information in the [wiki](https://github.com/MustafaHi/Wiki3/wiki)  
 
-Create documentation websites quickly with Wiki3, built with vanilla JavaScript for lightweight, easy to use framework.  
-Requires no installation, no configuration, no building or compiling, you just drop the files once and your website is ready.
-
+Create documentation websites quickly with Wiki3, built with vanilla JavaScript for lightweight, easy to use (build-free) framework.
 + Vanilla JS no building, no complex web knowledge needed.
 + Lightweight and extremely fast SPA.
 + Headers, Paragraphs and Selection linking.
@@ -25,7 +23,7 @@ Requires no installation, no configuration, no building or compiling, you just d
 You can checkout `>` [Live website](https://MustafaHi.github.io/Wiki3/) and `>` [Roadmap](https://github.com/MustafaHi/Wiki3/wiki/Roadmap)
 
 
-## Getting started
+## [Getting started](https://MustafaHi.github.io/Wiki3/Main)
 
 You can either include all the files from `Release` folder or  
 Add the following HTML code
@@ -34,7 +32,6 @@ Add the following HTML code
 <link type="text/css" rel="stylesheet" href="wiki.css">
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js" data-manual></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/navigo@8.11.0/lib/navigo.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js"></script>
 <script type="text/javascript" src="wiki-setup.js"></script>
 <script type="text/javascript" src="wiki.js"></script>
@@ -48,7 +45,6 @@ then edit `wiki-setup.js` following the [Setup](https://github.com/MustafaHi/Wik
 Wiki3 @MIT licensed, by [@MustafaHi](https://github.com/MustafaHi)  
 current version use the following libraries: 
 [Marked](https://github.com/markedjs/marked)
-[Navigo](https://github.com/krasimir/navigo)
 [Zenscroll](https://github.com/zengabor/zenscroll)
 [PrismJS](https://github.com/PrismJS/prism)
 

@@ -381,12 +381,14 @@
 }
 
 #Doc table tr {
-	background-color: #fff;
 	border-top: 1px solid #c6cbd1;
 }
 
 #Doc table tr:nth-child(2n) {
 	background-color: #f6f8fa;
+}
+.dark #Doc table tr:nth-child(2n) {
+	background-color: #24292e;
 }
 
 #Doc img {
@@ -430,7 +432,8 @@
 	overflow: auto;
 	font-size: 85%;
 	line-height: 1.45;
-	background-color: #f6f8fa;
+	/* background-color: #f6f8fa; */
+	background-color: rgba(27, 31, 35, .05);
 	border-radius: 3px;
 }
 
@@ -463,7 +466,7 @@ body {
 	color: var(--K);
 	background: var(--BG);
 	font-size: 15px;
-	font-family: "Inter";
+	font-family: "Inter", "Segoe UI";
 	overflow-y: scroll;
 	margin: 0;
 }
@@ -631,7 +634,9 @@ header a:hover {
 .content {
 	height: 100%;
 }
-
+[hidden] {
+	display: none !important;
+}
 nav {
 	padding: 1em;
 	font-size: 14px;
@@ -640,6 +645,7 @@ nav {
 	/*	flex-direction: column;*/
 	display: block;
 	width: 350px;
+	max-width: 100%;
 	/* overflow: hidden; */
 	overflow-y: auto;
 	position: sticky;
@@ -649,6 +655,12 @@ nav {
 	height: 100%;
 	z-index: 99;
 	box-sizing: border-box;
+}
+nav li nav {
+	padding: 0;
+}
+nav li p {
+	font-size: 0.9em;
 }
 
 nav.show {
@@ -680,7 +692,7 @@ nav a:hover {
 	padding: 0 6px 0 0;
 }
 
-Nav a {
+nav a {
 	padding: 6px;
 }
 
@@ -721,8 +733,7 @@ nav a {
 	overflow: hidden;
 }
 
-@media (max-width: 1050px) {
-	/* nav { background: red; } */
+/* @media (max-width: 1050px) {
 	#Navigation {
 		display: none;
 		position: fixed;
@@ -730,7 +741,6 @@ nav a {
 		width: 100%;
 	}
 	nav.show {
-		/* top: 3rem; */
 		display: block !important;
 	}
 	.btn:focus {
@@ -739,7 +749,7 @@ nav a {
 	#Doc {
 		padding: 3em 1em 20em;
 	}
-}
+} */
 
 @media (max-width: 800px) {
 	/* nav { background: red; } */

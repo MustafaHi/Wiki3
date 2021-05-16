@@ -1,70 +1,10 @@
-//| Wiki3 v0.1.1
+//| Wiki3 v0.3
 //| https://github.com/MustafaHi/Wiki3
-
-Init();
-
-var router = new Navigo(Setup.root);
 
 var Page = [], Navigation, ToC, toc = [], Doc;
 
+Init();
 zenscroll.setup(200, 60);
-
-router.on({
-    ':page/:*': function(param) {
-        console.log("ROUTER: :page/*");
-        console.log("PARAM : " + JSON.stringify(param));
-        let paramPage = param.data.page.toLowerCase();
-        if (Page[0]?.toLowerCase() !== paramPage)
-        {
-            Page = Setup.pages.find(p=> p[0].toLowerCase() === paramPage) ?? Setup.pages[0];
-            setupNav(Page[2]);
-        }
-        loadDocument(param);
-    },
-    ':page': function(param) {
-        console.log("ROUTER: :page");
-        console.log("PARAM: " + JSON.stringify(param));
-        let paramPage = param.data.page.toLowerCase();
-        if (Page[0]?.toLowerCase() !== paramPage)
-        {
-            Page = Setup.pages.find(p=> p[0].toLowerCase() === paramPage) ?? Setup.pages[0];
-            setupNav(Page[2]);
-        }
-        Navigation.querySelector('a').click();
-    },
-    '*': function() {
-        console.log("ROUTER: *");
-        Page = Setup.pages[0];
-        setupNav(Page[2]);
-        Navigation.querySelector('a').click();
-    }
-}).resolve();
-
-
-function Init() {
-    const Wiki = document.getElementById("wiki");
-    
-    var HTML = "";
-    if (Setup.header) 
-    {
-        HTML =  '<header><div class="wrapper flow-horizontal"><div class="left"><div class="btn" id="toggleNav"><svg viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"></path></svg></div><a href="'+ Setup.root +'">'+ Setup.title +'</a><div id="Pages">';
-        Setup.pages.forEach((p) => {HTML += '<a href="'+ p[0] +'" data-navigo>'+ p[0] +'</a>';});
-        HTML += '</div></div><div class="right"><div id="Social"></div><div id="Search" tabindex="0"><input type="search" id="iSearch" placeholder="Search"><div id="searchContent" tabindex="0"></div></div><div class="btn" id="toggleTheme"><div class="themeSwitch"></div></div></div></div></header>';
-    }
-    HTML += '<div class="content wrapper flow-horizontal" id="wiki"><nav id="Navigation"></nav><div id="Doc" class="markdown-body line-numbers"></div><nav id="TableOfContent"></nav></div>';
-    Wiki.innerHTML = HTML;
-    
-    Navigation = document.getElementById('Navigation');
-    ToC = document.getElementById('TableOfContent');
-    Doc = document.getElementById('Doc');
-    
-	document.getElementById("toggleNav").addEventListener("click",   () => {
-        Navigation.classList.toggle("show");
-	});
-	document.getElementById("toggleTheme").addEventListener("click", () => {
-        document.body.classList.toggle("dark");
-	});
-}
 
 var renderer = (function () {
 	var r = new marked.Renderer();
@@ -77,13 +17,89 @@ var renderer = (function () {
 })();
 marked.setOptions({renderer: renderer});
 
+const router = {
+    root: null,
+    selector: null
+};
+
+router.init = (root, selector) => {
+    router.root = root;
+    router.selector = selector;
+    router.updateLinks();
+    router.resolve();
+};
+
+router.updateLinks = (dom = document, force = false) => {
+    let root = router.root.slice(0,-1), href;
+
+    for (var el of dom.querySelectorAll(router.selector)) {
+            href = el.getAttribute('href');
+        if (href[0] == '/' && !el.set)
+        {
+            if (force) el.setAttribute('href', root + href);
+			el.set = true;
+            el.addEventListener('click', (evt) => {
+                evt.preventDefault();
+                evt.stopPropagation();
+                router.navigate(evt.target.getAttribute('href'));
+            });
+        }
+    }
+};
+
+router.navigate = (href) => {
+    window.history.pushState(href, `${href}`, `${href}`);
+	router.resolve();
+};
+
+router.resolve = () => {
+    const url = window.location.pathname.replace(router.root, '').replace(/\/+$/, '').replace(/^\/+/, '').split('/');
+	if (Page[0]?.toLowerCase() !== url[0]?.toLowerCase()) {
+		Page = Setup.pages.find(p=> p[0].toLowerCase() === url[0]?.toLowerCase()) ?? Setup.pages[0];
+		setupNav(Page[2]);
+	}
+	!url[1] ? Navigation.querySelector('a').click() : 
+	loadDocument({url: window.location.pathname, hash: window.location.hash.slice(1)});
+};
+
+router.init(Setup.root, '#wiki a');
+
+function Init() {
+    const Wiki = document.getElementById('wiki');
+    
+    var HTML = "";
+    if (Setup.header) 
+    {
+        HTML =  '<header><div class="wrapper flow-horizontal"><div class="left"><div class="btn" id="toggleNav"><svg viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"></path></svg></div><a href="'+ Setup.root +'">'+ Setup.title +'</a><div id="Pages">';
+        Setup.pages.forEach((p) => {HTML += '<a href="'+ Setup.root + p[0] +'" data-navigo>'+ p[0] +'</a>';});
+        HTML += '</div></div><div class="right"><div id="Social"></div>'
+        + '<div id="Search" tabindex="0" '+ (Setup.search ? '' : 'hidden') +'><input type="search" id="iSearch" placeholder="Search"><div id="searchContent" tabindex="0"></div></div>'
+        + '<div class="btn" id="toggleTheme" '+ (Setup.theme ? '' : 'hidden') +'><div class="themeSwitch"></div></div></div></div></header>';
+    }
+    HTML += '<div class="content wrapper flow-horizontal" id="wiki"><nav id="Navigation"></nav><div id="Doc" class="markdown-body line-numbers"></div>'+ (!Setup.integratedToC && Setup.TableOfContent ? '<nav id="TableOfContent"></nav>' : '') +'</div>';
+    Wiki.innerHTML = HTML;
+    
+    Navigation = document.getElementById('Navigation');
+    Doc = document.getElementById('Doc');
+    
+	document.getElementById("toggleNav").addEventListener("click",   () => {
+        Navigation.classList.toggle("show");
+	});
+	document.getElementById("toggleTheme").addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+	});
+}
 
 function setupNav(list) {
+    function toUrl(string) {
+        return string.trim().replace(' ', '-');
+    }
 	function ar(list, owner) {
 		var arr = "<ul>";
 		for (var i of list) {
 			if (i.c) arr += '<li>' + i.t + ' ' + ar(i.c, owner + '/' + i.t) + '</li>';
-			else arr += '<li><a href="/' + Page[0] + '/' + owner + '/' + i.t + '" path="' + Setup.root + Page[1] + i.l + '" data-navigo>' + i.t + '</a></li>';
+			else if(Setup.fileURL) arr += '<li><a href="'+ Setup.root + toUrl(Page[0]) + '/' + Page[1] + i.l.replace(/\.\w+$/, "") +'" path="'+ Setup.root + Page[1] + i.l +'" data-navigo>' + i.t + '</a></li>';
+			else arr += '<li><a href="'+ Setup.root + toUrl(Page[0]) + '/' + toUrl(owner) + '/' + toUrl(i.t) + '" path="'+ Setup.root + Page[1] + i.l +'" data-navigo>' + i.t + '</a></li>';
 		}
 		arr += "</ul>";
 		return arr;
@@ -94,12 +110,11 @@ function setupNav(list) {
 		if (item.c) HTML += ar(item.c, item.t);
 	}
 	Navigation.innerHTML = HTML;
-    router.updatePageLinks();
+    router.updateLinks();
 }
 
 function loadDocument(param) {
-    console.log(param.url);
-    var  el = Navigation.querySelector('a[href="/'+ decodeURI(param.url) +'"]');
+    var  el = Navigation.querySelector('a[href="'+ decodeURI(param.url) +'"]');
     if (!el)
     {
         Doc.innerHTML = "<h1>404 NOT FOUND!</h1><p>Please make sure the URL is correct.</p>";
@@ -113,10 +128,19 @@ function loadDocument(param) {
 
         Doc.innerHTML = marked(data);
 
-        Table();
+        if (Setup.TableOfContent) {
+            if (Setup.integratedToC) {
+                document.getElementById("TableOfContent")?.remove();
+                el.innerHTML += '<nav id="TableOfContent"></nav>';
+            }
+            Table();
+        }
 
-        var hash = document.getElementById(param.hashString);
+        var hash = document.getElementById(param.hash);
         if (hash)  zenscroll.to(hash);
+
+        window.Prism.highlightAllUnder(Doc);
+        router.updateLinks(Doc, true);
     });
     document.title = Setup.title + " | " + el.textContent;
     return true;
@@ -144,5 +168,5 @@ function Table() {
 	var HTML = ['<p>CONTENT</p>', '<ul>'];
 	build(toc, 0, 0, HTML);
 	HTML.push("</ul>");
-	ToC.innerHTML = HTML.join("");
+	document.getElementById('TableOfContent').innerHTML = HTML.join("");
 }

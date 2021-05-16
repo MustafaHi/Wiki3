@@ -2,44 +2,27 @@ const setupList = [{
 	t: "Getting Started",
 	c: [
 		{
+			t: "Wiki3",
+			l: "Wiki3.md"
+		},
+		{
 			t: "Installation",
-			l: "demo1.md"
+			l: "Installation.md"
 		},
 		{
-			t: "Upcoming Changes",
-			l: "demo2.md"
-		},
-		{
-			t: "Platform",
-			c: [
-				{ t: "Windows", l: "demo3.md" },
-				{ t: "Linux",   l: "demo4.md" }
-			]
-		},
-		{
-			t: "Latex",
-			l: "demo1.md"
+			t: "Setup",
+			l: "Setup.md"
 		}
 	]
 }, {
-	t: "Tables",
-	c: [{ t: "API", l: "demo2.md" }, { t: "All Documentations", l: "demo4.md" }]
+	t: "Misc",
+	c: [{ t: "Markdown Test", l: "markdown.md" }, { t: "HTML test", l: "HTML.html" }]
 }];
 const guideList = [{
-	t: "Framework",
+	t: "Developer",
 	c: [
-		{ t: "Guide Lines", l: "demo2.md"},
-		{ t: "Setup", l: "demo3.md"},
-		{ t: "Colors", l: "demo4.html" },
-	]
-}, {
-	t: "Components",
-	c: [
-		{ t: "Grid", l: "demo1.md" },
-		{ t: "Headers", l: "demo4.md" },
-		{ t: "Buttons", l: "demo2.md" },
-		{ t: "Input", l: "demo3.md" },
-		{ t: "Checkboxes", l: "demo4.md" },
+		{ t: "Welcome", l: "markdown.md"},
+		{ t: "Wiki.js", l: "Setup.md"},
 	]
 }];
 
@@ -47,17 +30,14 @@ const guideList = [{
 
 const Setup = {
 	title: "Wiki3 ",
-	path: "/Source/",
+	root: "/Wiki3/",
 	fileURL: false,
 	header: true,
-	search: true,
+	search: false,
 	theme : true,
-	tracking: true,
-	codeTabs: true,
-	innerTable: true,
 	TableOfContent: true,
 	integratedToC : false,
 	paragraphLink : true,
 	selectionLink : true,
-	pages: [["Main", "docs/", setupList], ["Guide", "docs/", guideList]]
+	pages: [["Main", "docs/", setupList], ["Developer", "docs/", guideList]]
 };
