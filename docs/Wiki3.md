@@ -1,12 +1,12 @@
 
 # Wiki3
 
-> Version : 0.2  
-> [Change Log & Features](https://github.com/MustafaHi/Wiki3/wiki/Change-log-&-Features)  
-> [Release / Distribution](/Release)  
-> [Roadmap](https://github.com/MustafaHi/Wiki3/wiki/Roadmap)  
-> [Developer Guide](https://github.com/MustafaHi/Wiki3/wiki/Dev-Guide)  
-> [Contribution Guidelines](https://github.com/MustafaHi/Wiki3/wiki/Dev-Guide)  
+> Version : 0.4  
+> [Change Log & Features](/Developer/Wiki3/Change-log-&-Features)  
+> [Release / Distribution](https://github.com/MustafaHi/Wiki3/tree/main/Release)  
+> [Roadmap](/Developer/Wiki3/RoadMap)  
+> [Developer Guide](/Developer/Developer/Start)  
+> [Contribution Guidelines](/Developer/Developer/Contributing)  
 > More information in the [wiki](https://github.com/MustafaHi/Wiki3/wiki)  
 
 Create documentation websites quickly with Wiki3,  
@@ -23,7 +23,7 @@ Requires no building or compiling, you just take care of the documents.
 + Easy to configure, extend and theme.
 + Just focus on your Markdown/HTML documents.
 
-You can checkout `>` [Roadmap](https://github.com/MustafaHi/Wiki3/wiki/Roadmap)
+You can checkout `>` [Roadmap](/Developer/Wiki3/RoadMap)
 
 
 `>` [Getting Started](/Main/Getting-Started/Installation)
