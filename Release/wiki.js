@@ -1,9 +1,10 @@
-//| Wiki3 v0.3
+//| Wiki3 v0.4
 //| https://github.com/MustafaHi/Wiki3
 
-var Page = [], Navigation, ToC, toc = [], Doc;
+var Page = [], Navigation, Nav = [], ToC, toc = [], Doc;
 
 Init();
+
 zenscroll.setup(200, 60);
 
 var renderer = (function () {
@@ -40,8 +41,8 @@ router.updateLinks = (dom = document, force = false) => {
 			el.set = true;
             el.addEventListener('click', (evt) => {
                 evt.preventDefault();
-                evt.stopPropagation();
-                router.navigate(evt.target.getAttribute('href'));
+                if (!evt.currentTarget.classList.contains('active'))
+                    router.navigate(evt.target.getAttribute('href'));
             });
         }
     }
@@ -59,10 +60,10 @@ router.resolve = () => {
 		setupNav(Page[2]);
 	}
 	!url[1] ? Navigation.querySelector('a').click() : 
-	loadDocument({url: window.location.pathname, hash: window.location.hash.slice(1)});
+	loadDocument({url: window.location.pathname.replace(/\/+$/, ''), hash: window.location.hash.slice(1)});
 };
 
-router.init(Setup.root, '#wiki a');
+router.init('/Wiki3/', '#wiki a');
 
 function Init() {
     const Wiki = document.getElementById('wiki');
@@ -70,13 +71,13 @@ function Init() {
     var HTML = "";
     if (Setup.header) 
     {
-        HTML =  '<header><div class="wrapper flow-horizontal"><div class="left"><div class="btn" id="toggleNav"><svg viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"></path></svg></div><a href="'+ Setup.root +'">'+ Setup.title +'</a><div id="Pages">';
-        Setup.pages.forEach((p) => {HTML += '<a href="'+ Setup.root + p[0] +'" data-navigo>'+ p[0] +'</a>';});
+        HTML =  '<header id="wiki-header"><div class="wrapper"><div class="left"><div class="btn" id="toggleNav"><svg viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"></path></svg></div><a href="'+ Setup.root +'">'+ Setup.title +'</a><div id="Pages">';
+        Setup.pages.forEach((p) => {HTML += '<a href="'+ Setup.root + p[0] +'">'+ p[0] +'</a>';});
         HTML += '</div></div><div class="right"><div id="Social"></div>'
         + '<div id="Search" tabindex="0" '+ (Setup.search ? '' : 'hidden') +'><input type="search" id="iSearch" placeholder="Search"><div id="searchContent" tabindex="0"></div></div>'
         + '<div class="btn" id="toggleTheme" '+ (Setup.theme ? '' : 'hidden') +'><div class="themeSwitch"></div></div></div></div></header>';
     }
-    HTML += '<div class="content wrapper flow-horizontal" id="wiki"><nav id="Navigation"></nav><div id="Doc" class="markdown-body line-numbers"></div>'+ (!Setup.integratedToC && Setup.TableOfContent ? '<nav id="TableOfContent"></nav>' : '') +'</div>';
+    HTML += '<div class="content wrapper"><nav id="Navigation"></nav><div id="Doc" class="line-numbers"></div>'+ (!Setup.integratedToC && Setup.TableOfContent ? '<nav id="TableOfContent"></nav>' : '') +'</div>';
     Wiki.innerHTML = HTML;
     
     Navigation = document.getElementById('Navigation');
@@ -91,37 +92,53 @@ function Init() {
 }
 
 function setupNav(list) {
-    function toUrl(string) {
-        return string.trim().replace(' ', '-');
-    }
+    function toUrl(string) { return string.trim().replace(' ', '-'); }
+    let preFix = Setup.root + toUrl(Page[0]) + '/' + (Setup.fileURL ? Page[1] : '');
+    Nav = []; // [URL, PATH, ELEMENT]
+    
 	function ar(list, owner) {
 		var arr = "<ul>";
 		for (var i of list) {
-			if (i.c) arr += '<li>' + i.t + ' ' + ar(i.c, owner + '/' + i.t) + '</li>';
-			else if(Setup.fileURL) arr += '<li><a href="'+ Setup.root + toUrl(Page[0]) + '/' + Page[1] + i.l.replace(/\.\w+$/, "") +'" path="'+ Setup.root + Page[1] + i.l +'" data-navigo>' + i.t + '</a></li>';
-			else arr += '<li><a href="'+ Setup.root + toUrl(Page[0]) + '/' + toUrl(owner) + '/' + toUrl(i.t) + '" path="'+ Setup.root + Page[1] + i.l +'" data-navigo>' + i.t + '</a></li>';
+			if (i.c)
+                arr += '<li>'+ i.t + ar(i.c, owner + '/' + i.t) +'</li>';
+			else if(Setup.fileURL)
+                arr += '<li><a href="'+ preFix + i.l.replace(/\.\w+$/, '') +'">' + i.t + '</a></li>', Nav.push([(preFix + i.l.replace(/\.\w+$/, '')).toLowerCase(), Setup.root + Page[1] + i.l]);
+			else
+                arr += '<li><a href="'+ preFix + toUrl(owner) + '/' + toUrl(i.t) +'">'+ i.t + '</a></li>', Nav.push([(preFix + toUrl(owner) +'/'+ toUrl(i.t)).toLowerCase(), Setup.root + Page[1] + i.l]);
 		}
 		arr += "</ul>";
 		return arr;
 	}
 	var HTML = "";
 	for (var item of list) {
-		HTML += '<p>' + item.t + '</p>';
+		HTML += '<p>'+ item.t +'</p>';
 		if (item.c) HTML += ar(item.c, item.t);
 	}
+
 	Navigation.innerHTML = HTML;
     router.updateLinks();
+    var NavList = Navigation.getElementsByTagName('a');
+    for (let i = 0; i < NavList.length; i++)
+        Nav[i].push(NavList[i]);
+
+    document.querySelector('#Pages .active')?.classList.toggle('active', false);
+    document.querySelector('#Pages a[href="'+Setup.root + Page[0]+'"]').classList.toggle('active', true);
 }
 
+
 function loadDocument(param) {
-    var  el = Navigation.querySelector('a[href="'+ decodeURI(param.url) +'"]');
-    if (!el)
+    let el = null, file = null, url = param.url.toLowerCase();
+    
+    for (let i = 0; i < Nav.length; i++)
+    if (Nav[i][0] == url) el = Nav[i][2], file = Nav[i][1];
+    
+    if (el == null)
     {
         Doc.innerHTML = "<h1>404 NOT FOUND!</h1><p>Please make sure the URL is correct.</p>";
         return false;
     }
     
-    fetch(el.getAttribute("path")).then(response => response.text())
+    fetch(file).then(response => response.text())
     .then((data) => {
         scroll(0,0);
         toc = [];
@@ -143,6 +160,8 @@ function loadDocument(param) {
         router.updateLinks(Doc, true);
     });
     document.title = Setup.title + " | " + el.textContent;
+    Navigation.querySelector('.active')?.classList.toggle('active', false);
+    el.classList.toggle('active', true);
     return true;
 };
 
