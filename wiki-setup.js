@@ -21,8 +21,14 @@ const setupList = [{
 const guideList = [{
 	t: "Developer",
 	c: [
-		{ t: "Welcome", l: "markdown.md"},
-		{ t: "Wiki.js", l: "Setup.md"},
+		{ t: "Welcome", l: "welcome.md"},
+		{ t: "Wiki.js", l: "Wiki-js.md"},
+		{ t: "Performances", l: "Performance.md"},
+	]
+}, {
+	t: "Wiki3",
+	c: [
+		{ t: "RoadMap", l: "RoadMap.md" }
 	]
 }];
 
@@ -39,5 +45,5 @@ const Setup = {
 	integratedToC : false,
 	paragraphLink : true,
 	selectionLink : true,
-	pages: [["Main", "docs/", setupList], ["Developer", "docs/", guideList]]
+	pages: [["Main", "docs/", setupList], ["Developer", "docs/dev/", guideList]]
 };
