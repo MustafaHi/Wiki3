@@ -1,14 +1,13 @@
 
 # Wiki3
 
-> Version : 0.3 Beta  
+> Version : 0.4  
 > [Website / Demo / Guide](https://MustafaHi.github.io/Wiki3/)  
-> [Change Log & Features](https://github.com/MustafaHi/Wiki3/wiki/Change-log-&-Features)  
+> [Change Log & Features](https://MustafaHi.github.io/Wiki3/Developer/Wiki3/Change-log-&-Features)  
 > [Release / Distribution](/Release)  
-> [Roadmap](https://github.com/MustafaHi/Wiki3/wiki/Roadmap)  
+> [Roadmap](https://MustafaHi.github.io/Wiki3/Developer/Wiki3/RoadMap)  
 > [Developer Guide](https://MustafaHi.github.io/Wiki3/Developer)  
-> [Contribution Guidelines](https://github.com/MustafaHi/Wiki3/wiki/Dev-Guide)  
-> More information in the [wiki](https://github.com/MustafaHi/Wiki3/wiki)  
+> [Contribution Guidelines](https://MustafaHi.github.io/Wiki3/Developer/Developer/Contribute)  
 
 Create documentation websites quickly with Wiki3, built with vanilla JavaScript for lightweight, easy to use (build-free) framework.
 + Vanilla JS no building, no complex web knowledge needed.
@@ -20,7 +19,7 @@ Create documentation websites quickly with Wiki3, built with vanilla JavaScript 
 + Easy to configure, extend and theme.
 + Just focus on your Markdown/HTML documents.
 
-You can checkout `>` [Live website](https://MustafaHi.github.io/Wiki3/) and `>` [Roadmap](https://github.com/MustafaHi/Wiki3/wiki/Roadmap)
+You can checkout `>` [Live website](https://MustafaHi.github.io/Wiki3/) and `>` [Roadmap](https://MustafaHi.github.io/Wiki3/Developer/Wiki3/RoadMap)
 
 
 ## [Getting started](https://MustafaHi.github.io/Wiki3/Main)
@@ -39,7 +38,7 @@ Add the following HTML code
 
 You must include `wiki-setup.js` and `wiki.js`;
 
-then edit `wiki-setup.js` following the [Setup](https://github.com/MustafaHi/Wiki3/wiki/Setup) guide.
+then edit `wiki-setup.js` following the [Setup](https://mustafahi.github.io/Wiki3/Main/Getting-Started/Setup) guide.
 
 ## Credit
 Wiki3 @MIT licensed, by [@MustafaHi](https://github.com/MustafaHi)  
