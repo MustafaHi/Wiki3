@@ -22,7 +22,7 @@ const guideList = [{
 	t: "Developer",
 	c: [
 		{ t: "Welcome", l: "welcome.md"},
-		{ t: "Wiki.js", l: "wiki-js.md"},
+		{ t: "Wiki.js", l: "wiki-file.md"},
 		{ t: "Performance", l: "Performance.md"},
 	]
 }, {
