@@ -1,9 +1,9 @@
 
 # Wiki3
 
-> Version : 0.4  
+> Version : 0.4.1  
 > [Website / Demo / Guide](https://MustafaHi.github.io/Wiki3/)  
-> [Change Log & Features](https://MustafaHi.github.io/Wiki3/Developer/Wiki3/Change-log-&-Features)  
+> [Change Log & Features](https://MustafaHi.github.io/Wiki3/Developer/Wiki3/change-log)  
 > [Release / Distribution](/Release)  
 > [Roadmap](https://MustafaHi.github.io/Wiki3/Developer/Wiki3/RoadMap)  
 > [Developer Guide](https://MustafaHi.github.io/Wiki3/Developer)  

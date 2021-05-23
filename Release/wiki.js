@@ -1,4 +1,4 @@
-//| Wiki3 v0.4
+//| Wiki3 v0.4.1
 //| https://github.com/MustafaHi/Wiki3
 
 var Page = [], Navigation, Nav = [], ToC, toc = [], Doc;
@@ -63,7 +63,7 @@ router.resolve = () => {
 	loadDocument({url: window.location.pathname.replace(/\/+$/, ''), hash: window.location.hash.slice(1)});
 };
 
-router.init('/Wiki3/', '#wiki a');
+router.init(Setup.root, '#wiki a');
 
 function Init() {
     const Wiki = document.getElementById('wiki');
