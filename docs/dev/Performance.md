@@ -30,5 +30,7 @@ Those tests were run with default options, (some options will give better result
 
     https://gtmetrix.com/reports/mustafahi.github.io/9L346y57/
 
+    ![result](https://user-images.githubusercontent.com/5108884/119243926-fc180d80-bb73-11eb-996e-d4fc90fc6432.png)
+
     144ms Fully loaded, nothing much to say.
 
