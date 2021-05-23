@@ -1,12 +1,12 @@
 
 # Wiki3
 
-> Version : 0.4  
-> [Change Log & Features](/Developer/Wiki3/Change-log-&-Features)  
+> Version : 0.4.1  
+> [Change Log & Features](/Developer/Wiki3/change-log)  
 > [Release / Distribution](https://github.com/MustafaHi/Wiki3/tree/main/Release)  
 > [Roadmap](/Developer/Wiki3/RoadMap)  
-> [Developer Guide](/Developer/Developer/Start)  
-> [Contribution Guidelines](/Developer/Developer/Contributing)  
+> [Developer Guide](/Developer)  
+> [Contribution Guidelines](/Developer/Developer/Contribute)  
 > More information in the [wiki](https://github.com/MustafaHi/Wiki3/wiki)  
 
 Create documentation websites quickly with Wiki3,  

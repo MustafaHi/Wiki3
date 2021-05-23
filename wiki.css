@@ -43,6 +43,7 @@ body { margin: 0; overflow-y: scroll; }
 #wiki a {
 	color: var(--link);
 	text-decoration: none;
+	word-wrap: break-word;
 }
 
 .wrapper {
