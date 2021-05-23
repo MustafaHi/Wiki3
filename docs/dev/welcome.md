@@ -1,6 +1,6 @@
 # Developer Hub for Wiki3
 
-Architecture of Wiki3 can be found in [Wiki.js](/Developer/Developer/Wiki.js) documentation.
+Architecture of Wiki3 can be found in [Wiki js](/Developer/Developer/Wiki-js) documentation.
 
 ## Dependence(libraries)
 
