@@ -16,7 +16,8 @@ The following table represent the `const Setup` object properties.
 | integratedToC   | Table of content will show in the Navigation instead of it own area |
 | *paragraphLink  | allows paragraph linking like with headers |
 | *selectionLink  | link to specific text selection that will be highlighted |
-| pages | an array of pages `["pageTitle", "folderPath/", listObject]`
+| social | an array of html elements used as links |
+| pages | an array of pages `["pageTitle", "folderPath/", listObject]` |
 
 
 *current option is not operational yet.
@@ -89,6 +90,12 @@ Enable paragraph linking like headers.
 `true/false` | `EXPERIMENTAL`
 
 Enable specific text selection linking, this will break established links, if content been changed.
+
+## Social
+
+`[htmlString]`
+
+Array of html elements (links)
 
 ## Pages
 
