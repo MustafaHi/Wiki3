@@ -1,14 +1,68 @@
+
+html {
+	line-height: 1.15;
+	-webkit-text-size-adjust: 100%;
+}
+
+h1 {
+	font-size: 2em;
+	margin: 0.67em 0;
+}
+hr {
+	box-sizing: content-box;
+	height: 0;
+	overflow: visible;
+	border-color: var(--border);
+}
+b, strong {
+	font-weight: bolder;
+}
+pre,
+code,
+kbd,
+samp {
+	font-family: var(--mono-font);
+	font-size: 1em;
+}
+small {
+	font-size: 80%;
+}
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sub {
+	bottom: -0.25em;
+}
+sup {
+	top: -0.5em;
+}
+button, input, optgroup, select, textarea {
+	font-family: inherit;
+	font-size: 100%;
+	line-height: 1.15;
+	margin: 0;
+	text-transform: none;
+}
+details {
+	display: block;
+}
+summary {
+	display: list-item;
+}
+
+
 body { margin: 0; overflow-y: scroll; }
 
 #wiki {
 	--K: #24292e;
 	--BG: #fff;
-	--headerBG: #fff;
 	--headerK: #000;
-	--navHeaderK: #a0aec0;
+	--headerBG: #fff;
+	--navHeaderK: #24292e;
 	--navK: #718096;
-	--navFK: #222;
-	--navFBG: #111;
 	--link: #0366d6;
 	--linkAlt: #4993e7;
 	--table1: #f0f0f0;
@@ -27,12 +81,10 @@ body { margin: 0; overflow-y: scroll; }
 .dark #wiki, #wiki.dark {
 	--K: #c9d1d9;
 	--BG: #0d1117;
-	--headerBG: #000;
 	--headerK: #fff;
+	--headerBG: #000;
 	--navHeaderK: #f7faff;
 	--navK: #cdd0d4;
-	--navFK: #eee;
-	--navFBG: #111;
 	--link: #4993e7;
 	--table1: #c6cbd1;
 	--table2: #24292e;
@@ -112,7 +164,7 @@ body { margin: 0; overflow-y: scroll; }
 	width: 100%;
 	border-radius: 4px;
 	padding: 0 10px;
-	border: 2px solid var(--navHeaderK);
+	border: 2px solid var(--border);
 }
 
 #Search:focus-within #searchContent {
@@ -166,6 +218,7 @@ nav {
 	box-sizing: border-box;
 	user-select: none;
 	z-index: 99;
+	font-weight: 600;
 }
 nav nav {padding: 0}
 nav.show {display: none}
@@ -179,8 +232,8 @@ nav p {
 nav li p { font-size: 0.9em; }
 
 nav li {
-	font-size: 14px;
-	font-weight: 500;
+	/* font-size: 14px; */
+	/* font-weight: 700; */
 	color: var(--navK);
 	list-style: none;
 	cursor: pointer;
@@ -267,10 +320,18 @@ h1,h2,h3,h4,h5,h6 {
 	box-sizing: initial;
 }
 
+#Doc blockquote {
+	padding: 0 1em;
+	margin: 0;
+	border-left: 4px solid var(--border);
+}
+
 @media (max-width: 1050px) {
 	#Navigation {
 		display: none;
 		position: fixed;
+		font-size: 16px;
+		font-weight: 500;
 		background: var(--BG);
 		width: 100%;
 		z-index: 100;
@@ -303,7 +364,7 @@ h1,h2,h3,h4,h5,h6 {
 
 /*| CODE/PRE |*/
 
-code {font-family: Consolas, 'SF Mono',Monaco,'Andale Mono','Ubuntu Mono',monospace; }
+code {font-family: Consolas, 'SF Mono',Monaco,'Andale Mono','Ubuntu Mono',monospace; font-size: 85%; }
 pre {
     color: var(--K);
 	background: var(--codeBG);
