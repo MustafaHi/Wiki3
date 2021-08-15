@@ -1,5 +1,12 @@
 # Change Log
 
+### 0.5
+
+- Replaced zenscroll lib with local implementation
+- router fix
+- better cross-browser support
+- style+
+
 ### 0.4.1
 
 - Fixed router

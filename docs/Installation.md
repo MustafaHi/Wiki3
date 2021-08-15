@@ -8,7 +8,6 @@ Add the following HTML code
 <link type="text/css" rel="stylesheet" href="wiki.css">
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js" data-manual></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js"></script>
 <script type="text/javascript" src="wiki-setup.js"></script>
 <script type="text/javascript" src="wiki.js"></script>
 ```

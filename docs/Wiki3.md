@@ -1,13 +1,12 @@
 
 # Wiki3
 
-> Version : 0.4.1  
+> Version : 0.5  
 > [Change Log & Features](/Developer/Wiki3/change-log)  
 > [Release / Distribution](https://github.com/MustafaHi/Wiki3/tree/main/Release)  
 > [Roadmap](/Developer/Wiki3/RoadMap)  
 > [Developer Guide](/Developer)  
-> [Contribution Guidelines](/Developer/Developer/Contribute)  
-> More information in the [wiki](https://github.com/MustafaHi/Wiki3/wiki)  
+> [Contribution Guidelines](/Developer/Wiki3/Contribute)  
 
 Create documentation websites quickly with Wiki3,  
 built with vanilla JavaScript for lightweight, easy to use framework.  
@@ -34,6 +33,5 @@ You can checkout `>` [Roadmap](/Developer/Wiki3/RoadMap)
 Wiki3 @MIT licensed, by [@MustafaHi](https://github.com/MustafaHi)  
 current version use the following libraries: 
 [Marked](https://github.com/markedjs/marked)
-[Zenscroll](https://github.com/zengabor/zenscroll)
 [PrismJS](https://github.com/PrismJS/prism)
 

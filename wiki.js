@@ -171,7 +171,7 @@ function loadDocument(param) {
             }
             Table();
         }
-        console.log(param.hash);
+
         if (param.hash) scrollToEl(param.hash);
 
         window.Prism.highlightAllUnder(Doc);
