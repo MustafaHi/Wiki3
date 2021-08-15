@@ -1,13 +1,13 @@
 
 # Wiki3
 
-> Version : 0.4.1  
+> Version : 0.5  
 > [Website / Demo / Guide](https://MustafaHi.github.io/Wiki3/)  
 > [Change Log & Features](https://MustafaHi.github.io/Wiki3/Developer/Wiki3/change-log)  
 > [Release / Distribution](/Release)  
 > [Roadmap](https://MustafaHi.github.io/Wiki3/Developer/Wiki3/RoadMap)  
 > [Developer Guide](https://MustafaHi.github.io/Wiki3/Developer)  
-> [Contribution Guidelines](https://MustafaHi.github.io/Wiki3/Developer/Developer/Contribute)  
+> [Contribution Guidelines](https://mustafahi.github.io/Wiki3/Developer/Wiki3/Contribute)  
 
 Create documentation websites quickly with Wiki3, built with vanilla JavaScript for lightweight, easy to use (build-free) framework.
 + Vanilla JS no building, no complex web knowledge needed.
@@ -31,7 +31,6 @@ Add the following HTML code
 <link type="text/css" rel="stylesheet" href="wiki.css">
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js" data-manual></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js"></script>
 <script type="text/javascript" src="wiki-setup.js"></script>
 <script type="text/javascript" src="wiki.js"></script>
 ```
@@ -44,6 +43,5 @@ then edit `wiki-setup.js` following the [Setup](https://mustafahi.github.io/Wiki
 Wiki3 @MIT licensed, by [@MustafaHi](https://github.com/MustafaHi)  
 current version use the following libraries: 
 [Marked](https://github.com/markedjs/marked)
-[Zenscroll](https://github.com/zengabor/zenscroll)
 [PrismJS](https://github.com/PrismJS/prism)
 

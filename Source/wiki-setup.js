@@ -38,6 +38,6 @@ const Setup = {
 	TableOfContent: true,
 	integratedToC : false,
 	paragraphLink : true,
-	selectionLink : true,
+	social: [],
 	pages: [["Main", "docs/", setupList], ["Developer", "docs/", guideList]]
 };

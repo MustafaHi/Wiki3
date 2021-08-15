@@ -1,11 +1,29 @@
-//| Wiki3 v0.4.1
+//| Wiki3 v0.5
 //| https://github.com/MustafaHi/Wiki3
 
 var Page = [], Navigation, Nav = [], ToC, toc = [], Doc;
 
 Init();
 
-zenscroll.setup(200, 60);
+function scrollToEl(ID) {
+    let el = document.getElementById(ID);
+    if (el)  window.scrollBy({ top: (el.getBoundingClientRect().top - 60), behavior: "smooth" });
+}
+window.addEventListener("click", function(evt) {
+    let target = evt.target;
+    while (target && target.tagName !== "A")
+        target = target.parentNode;
+    if (!target || evt.shiftKey || evt.metaKey || evt.ctrlKey || evt.altKey)
+        return;
+    
+    let href = target.getAttribute("href") || "";
+    if (href[0] !== "#") return;
+
+    scrollToEl(href.slice(1));
+    evt.preventDefault();
+    window.history.pushState({}, 0, `${href}`);
+});
+
 
 var renderer = (function () {
 	var r = new marked.Renderer();
@@ -52,11 +70,10 @@ router.navigate = (href) => {
     window.history.pushState(href, `${href}`, `${href}`);
 	router.resolve();
 };
-
 router.resolve = () => {
     const url = window.location.pathname.replace(router.root, '').replace(/\/+$/, '').replace(/^\/+/, '').split('/');
 	if (Page[0]?.toLowerCase() !== url[0]?.toLowerCase()) {
-		Page = Setup.pages.find(p=> p[0].toLowerCase() === url[0]?.toLowerCase()) ?? Setup.pages[0];
+        Page = Setup.pages.find(p=> p[0].toLowerCase() === url[0]?.toLowerCase()) ?? Setup.pages[0];
 		setupNav(Page[2]);
 	}
 	!url[1] ? Navigation.querySelector('a').click() : 
@@ -64,6 +81,7 @@ router.resolve = () => {
 };
 
 router.init(Setup.root, '#wiki a');
+window.onpopstate = router.resolve;
 
 function Init() {
     const Wiki = document.getElementById('wiki');
@@ -73,11 +91,11 @@ function Init() {
     {
         HTML =  '<header id="wiki-header"><div class="wrapper"><div class="left"><div class="btn" id="toggleNav"><svg viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"></path></svg></div><a href="'+ Setup.root +'">'+ Setup.title +'</a><div id="Pages">';
         Setup.pages.forEach((p) => {HTML += '<a href="'+ Setup.root + p[0] +'">'+ p[0] +'</a>';});
-        HTML += '</div></div><div class="right"><div id="Social"></div>'
-        + '<div id="Search" tabindex="0" '+ (Setup.search ? '' : 'hidden') +'><input type="search" id="iSearch" placeholder="Search"><div id="searchContent" tabindex="0"></div></div>'
-        + '<div class="btn" id="toggleTheme" '+ (Setup.theme ? '' : 'hidden') +'><div class="themeSwitch"></div></div></div></div></header>';
+        HTML += '</div></div><div class="right"><div id="Social">'+ Setup.social.join('') +'</div>'
+        + '<div id="Search" tabindex="0" '+ (!Setup.search && 'hidden') +'><input type="search" id="iSearch" placeholder="Search"><div id="searchContent" tabindex="0"></div></div>'
+        + '<div class="btn" id="toggleTheme" '+ (!Setup.theme && 'hidden') +'><div class="themeSwitch"></div></div></div></div></header>';
     }
-    HTML += '<div class="content wrapper"><nav id="Navigation"></nav><div id="Doc" class="line-numbers"></div>'+ (!Setup.integratedToC && Setup.TableOfContent ? '<nav id="TableOfContent"></nav>' : '') +'</div>';
+    HTML += '<div class="content wrapper"><nav id="Navigation"></nav><div id="Doc" class="line-numbers"></div>'+ (!Setup.integratedToC && Setup.TableOfContent && '<nav id="TableOfContent"></nav>') +'</div>';
     Wiki.innerHTML = HTML;
     
     Navigation = document.getElementById('Navigation');
@@ -153,8 +171,7 @@ function loadDocument(param) {
             Table();
         }
 
-        var hash = document.getElementById(param.hash);
-        if (hash)  zenscroll.to(hash);
+        if (param.hash) scrollToEl(param.hash);
 
         window.Prism.highlightAllUnder(Doc);
         router.updateLinks(Doc, true);

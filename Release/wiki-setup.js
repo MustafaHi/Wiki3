@@ -15,11 +15,11 @@ const Setup = {
 	root: "/",
 	fileURL: false,
 	header: true,
-	search: true,
+	search: false,
 	theme : true,
 	TableOfContent: true,
 	integratedToC : false,
-	paragraphLink : true,
-	selectionLink : true,
+	paragraphLink : false,
+	social: [],
 	pages: ['pageTitle', 'doc-folder/', List]
 };
