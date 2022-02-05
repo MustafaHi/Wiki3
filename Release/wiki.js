@@ -161,7 +161,7 @@ function loadDocument(param) {
         scroll(0,0);
         toc = [];
 
-        Doc.innerHTML = marked(data);
+        Doc.innerHTML = marked.parse(data);
 
         if (Setup.TableOfContent) {
             if (Setup.integratedToC) {
