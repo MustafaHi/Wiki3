@@ -4,6 +4,10 @@ Wiki3 scores 100/100/100 on chrome's lighthouse.
 
 Test against https://mustafahi.github.io/Wiki3/
 
+The following result is dependent on the test server specs and it location, Wiki3 takes no time to process,  
+this applies as general whole website (hosted on github pages) performance, and attempting to get most performant result.
+
+
 ### Version 0.4 break-down
 
 Those tests were run with default options, (some options will give better results).
