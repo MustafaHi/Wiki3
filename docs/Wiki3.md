@@ -1,7 +1,7 @@
 
 # Wiki3
 
-> Version : 0.5  
+> Version : 0.5.1  
 > [Change Log & Features](/Developer/Wiki3/change-log)  
 > [Release / Distribution](https://github.com/MustafaHi/Wiki3/tree/main/Release)  
 > [Roadmap](/Developer/Wiki3/RoadMap)  
@@ -32,6 +32,6 @@ You can checkout `>` [Roadmap](/Developer/Wiki3/RoadMap)
 ## Credit
 Wiki3 @MIT licensed, by [@MustafaHi](https://github.com/MustafaHi)  
 current version use the following libraries: 
-[Marked](https://github.com/markedjs/marked)
-[PrismJS](https://github.com/PrismJS/prism)
+[Marked](https://github.com/markedjs/marked) (markdown processor)
+[PrismJS](https://github.com/PrismJS/prism) (code highlight)
 
